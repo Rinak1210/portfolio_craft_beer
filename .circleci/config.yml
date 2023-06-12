@@ -22,14 +22,14 @@ jobs:
           command: |
             set -x
             docker-compose up -d
-            docker exec find_craft_beer_app curl -4 --retry 10 --retry-delay 3 --retry-connrefused http://localhost:3002
+            docker exec web curl -4 --retry 10 --retry-delay 3 --retry-connrefused http://localhost:3005
       - run:
           name: Setup database
           command: |
-            docker-compose exec find_craft_beer_app bash -c 'yes n | bundle exec rails g spree:install --migrate --seed --sample --auto_accept'
+            docker-compose exec web rails db:create db:migrate
       - run:
           name: Run rspec
-          command: docker-compose exec find_craft_beer rspec
+          command: docker-compose exec web rspec
 
   rubocop:
     working_directory: ~/find_craft_beer
@@ -55,20 +55,21 @@ jobs:
           paths:
             - vendor/bundle
 
-  heroku_deploy:
-    working_directory: ~/find_craft_beer
-    executor: heroku/default
-    resource_class: small
-    steps:
-      - checkout
-      - heroku/install
-      - run:
-          name: Deploy
-          command: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git HEAD:master
-      - run:
-          name: Run post-deploy tasks
-          command: |
-            heroku run bin/rails db:migrate -a $HEROKU_APP_NAME
+  # デプロイ時に実装
+  # heroku_deploy:
+  #   working_directory: ~/find_craft_beer
+  #   executor: heroku/default
+  #   resource_class: small
+  #   steps:
+  #     - checkout
+  #     - heroku/install
+  #     - run:
+  #         name: Deploy
+  #         command: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git HEAD:master
+  #     - run:
+  #         name: Run post-deploy tasks
+  #         command: |
+  #           heroku run bin/rails db:migrate -a $HEROKU_APP_NAME
 
 workflows:
   version: 2
@@ -76,7 +77,8 @@ workflows:
     jobs:
       - rspec
       - rubocop
-      - heroku_deploy:
-          requires:
-            - rspec
-            - rubocop
+      # デプロイ時に実装
+      # - heroku_deploy:
+      #     requires:
+      #       - rspec
+      #       - rubocop
