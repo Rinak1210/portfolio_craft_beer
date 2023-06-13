@@ -18,14 +18,14 @@ jobs:
           command: |
             set -x
             docker-compose up -d
-            docker exec web curl -4 --retry 10 --retry-delay 3 --retry-connrefused http://localhost:3005
+            docker exec find_craft_beer-web-1 curl -4 --retry 10 --retry-delay 3 --retry-connrefused http://localhost:3005
       - run:
           name: Setup database
           command: |
-            docker-compose exec web rails db:create db:migrate
+            docker-compose exec find_craft_beer-web-1 rails db:create db:migrate
       - run:
           name: Run rspec
-          command: docker-compose exec web rspec
+          command: docker-compose exec find_craft_beer-web-1 rspec
 
   rubocop:
     working_directory: ~/find_craft_beer
