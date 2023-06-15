@@ -6,12 +6,12 @@ services:
       - ./tmp/db:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: password
-  web:
+  find_craft_beer-web-1:
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
-      - .:/find_craft_beer-web-1
+      - .:/find_craft_beer
     ports:
-      - "3005:3000"
+      - "3005:3005"
     depends_on:
       - db
