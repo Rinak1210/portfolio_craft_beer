@@ -5,27 +5,23 @@ orbs:
 
 jobs:
   rspec:
-    # working_directory: ~/find_craft_beer
+    working_directory: ~/find_craft_beer
     docker:
-      - image: cimg/ruby:3.1.2
+      - image: circleci/ruby:3.1.2
     resource_class: small
     steps:
-      # - checkout
+      - checkout
       - setup_remote_docker:
           version: 20.10.14
       - run:
           name: Start containers and verify it is working
           command: |
             set -x
-            docker-compose build
             docker-compose up -d
             docker-compose ps -a
       - run:
           name: Setup database
           command: |
-            docker-compose ps -a
-            docker-compose logs web
-            ls
             docker-compose exec web rails db:create db:migrate
       - run:
           name: Run rspec
