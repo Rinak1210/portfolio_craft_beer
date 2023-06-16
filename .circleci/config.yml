@@ -19,6 +19,7 @@ jobs:
             set -x
             docker-compose up -d
             docker-compose ps -a
+            sleep 10
       - run:
           name: Setup database
           command: |
