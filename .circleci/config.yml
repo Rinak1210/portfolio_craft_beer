@@ -24,6 +24,7 @@ jobs:
           command: |
             docker-compose ps -a
             docker-compose logs web
+            ls
             docker-compose exec web rails db:create db:migrate
       - run:
           name: Run rspec
