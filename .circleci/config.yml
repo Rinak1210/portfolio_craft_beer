@@ -1,79 +1,104 @@
 version: 2.1
-
 orbs:
+  ruby: circleci/ruby@1.1.0
+  node: circleci/node@2
   heroku: circleci/heroku@2.0
 
 jobs:
-  rspec:
-    working_directory: ~/find_craft_beer
+  build:
     docker:
-      - image: circleci/ruby:3.1.2
-    resource_class: small
+      - image: cimg/ruby:3.1.2-browsers
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 20.10.14
+      - ruby/install-deps
+      - node/install-packages:
+          pkg-manager: yarn
+          cache-key: "yarn.lock"
+  rubocop:
+    parallelism: 3
+    docker:
+      - image: cimg/ruby:3.1-browsers
+      - image: circleci/postgres:9.5-alpine
+        environment:
+          POSTGRES_USER: user_name
+          POSTGRES_DB: your_db_name
+          POSTGRES_PASSWORD: ""
+    steps:
+      - checkout
+      - ruby/install-deps
+      - node/install-packages:
+          pkg-manager: yarn
+          cache-key: "yarn.lock"
       - run:
-          name: Start containers and verify it is working
+          name: run rubocop
+          command: bundle exec rubocop
+  test:
+    parallelism: 3
+    docker:
+      - image: cimg/ruby:3.1.2-browsers
+      - image: circleci/postgres:9.5-alpine
+        environment:
+          POSTGRES_USER: user_name
+          POSTGRES_DB: your_db_name
+          POSTGRES_PASSWORD: ""
+    environment:
+      BUNDLE_JOBS: "3"
+      BUNDLE_RETRY: "3"
+      PGHOST: 127.0.0.1
+      PGUSER: user_name
+      PGPASSWORD: ""
+      RAILS_ENV: test
+    steps:
+      - browser-tools/install-browser-tools
+      - checkout
+      - ruby/install-deps
+      - node/install-packages:
+          pkg-manager: yarn
+          cache-key: "yarn.lock"
+      - run:
+          name: rails db:migrate
+          command: bundle exec rails db:migrate
+      - run:
+          name: Database setup
+          command: bundle exec rails db:schema:load --trace
+      - run:
+          name: Rspec
+          command: bundle exec rspec
+  deploy:
+    docker:
+      - image: cimg/ruby:3.1.2-browsers
+    steps:
+      - checkout
+      - run:
+          name: 'Install Heroku CLI, if necessary'
           command: |
-            set -x
-            docker-compose up -d
-            docker-compose ps -a
-            sleep 10
+            if [[ $(command -v heroku) == "" ]]; then
+              curl https://cli-assets.heroku.com/install.sh | sh
+            else
+              echo "Heroku is already installed. No operation was performed."
+            fi
       - run:
-          name: Setup database
+          name: Deploy to Heroku_Production
           command: |
-            docker-compose exec web rails db:create db:migrate
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME_PRD.git main
       - run:
-          name: Run rspec
-          command: docker-compose exec web rspec
-
-  # rubocop:
-  #   working_directory: ~/find_craft_beer
-  #   docker:
-  #     - image: cimg/ruby:3.1.2
-  #   resource_class: small
-  #   steps:
-  #     - checkout
-  #     - restore_cache:
-  #         keys:
-  #           - gemfiles-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-  #           - gemfiles-{{ .Branch }}-
-  #           - gemfiles-master-
-  #     - run: bundle config --local path vendor/bundle
-  #     - run:
-  #         name: bundle install
-  #         command: bundle check || bundle install --jobs=8 --clean
-  #     - run:
-  #         name: Run rubocop
-  #         command: bundle exec rubocop --parallel
-  #     - save_cache:
-  #         key: gemfiles-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-  #         paths:
-  #           - vendor/bundle
-
-# heroku_deploy:
-#   working_directory: ~/find_craft_beer
-#   executor: heroku/default
-#   resource_class: small
-#   steps:
-#     - checkout
-#     - heroku/install
-#     - run:
-#         name: Deploy
-#         command: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git HEAD:master
-#     - run:
-#         name: Run post-deploy tasks
-#         command: |
-#           heroku run bin/rails db:migrate -a $HEROKU_APP_NAME
-
+          name: db migration
+          command: |
+            heroku run rails db:migrate --app ${HEROKU_APP_NAME_PRD}
 workflows:
   version: 2
-  build:
+  build_and_rubocop_and_test:
     jobs:
-      - rspec
-      # - rubocop
-      # - heroku_deploy:
-      #     requires:
-      #       - rspec
-      #       - rubocop
+      - build
+      - rubocop
+      - test:
+          requires:
+            - build
+            - rubocop
+  deploy:
+    jobs:
+      - deploy:
+          filters:
+              branches:
+                  only:
+                  - master
