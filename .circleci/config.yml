@@ -18,11 +18,12 @@ jobs:
           command: |
             set -x
             docker-compose up -d
-            docker-compose ps -a
             sleep 10
+            docker-compose ps -a
       - run:
           name: Setup database
           command: |
+            docker-compose up -d
             docker-compose ps -a
             docker-compose logs web
             docker-compose exec web rails db:create db:migrate
