@@ -26,29 +26,29 @@ jobs:
           name: Run rspec
           command: docker-compose run web rspec
 
-  # rubocop:
-  #   working_directory: ~/find_craft_beer
-  #   docker:
-  #     - image: cimg/ruby:3.1.2
-  #   resource_class: small
-  #   steps:
-  #     - checkout
-  #     - restore_cache:
-  #         keys:
-  #           - gemfiles-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-  #           - gemfiles-{{ .Branch }}-
-  #           - gemfiles-master-
-  #     - run: bundle config --local path vendor/bundle
-  #     - run:
-  #         name: bundle install
-  #         command: bundle check || bundle install --jobs=8 --clean
-  #     - run:
-  #         name: Run rubocop
-  #         command: bundle exec rubocop --parallel
-  #     - save_cache:
-  #         key: gemfiles-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-  #         paths:
-  #           - vendor/bundle
+  rubocop:
+    working_directory: ~/find_craft_beer
+    docker:
+      - image: cimg/ruby:3.1.2
+    resource_class: small
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - gemfiles-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - gemfiles-{{ .Branch }}-
+            - gemfiles-master-
+      - run: bundle config --local path vendor/bundle
+      - run:
+          name: bundle install
+          command: bundle check || bundle install --jobs=8 --clean
+      - run:
+          name: Run rubocop
+          command: bundle exec rubocop --parallel
+      - save_cache:
+          key: gemfiles-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
 
 heroku_deploy:
   working_directory: ~/find_craft_beer
