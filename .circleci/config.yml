@@ -41,11 +41,11 @@ jobs:
 #         command: |
 #           heroku run bin/rails db:migrate -a $HEROKU_APP_NAME
 
-# workflows:
-#   version: 2
-#   build:
-#     jobs:
-#       - rspec
+workflows:
+  version: 2
+  build:
+    jobs:
+      - rspec
 #       - heroku_deploy:
 #           requires:
 #             - rspec
