@@ -1,0 +1,4 @@
+<h1>ユーザー登録情報</h1>
+
+<p>メールアドレス：<%= @user.email %></p>
+<p><%= link_to '退会', unsubscribe_path(@user), method: :delete, data: { confirm: '本当に退会しますか？' } %></p>
