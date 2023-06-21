@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  skip_before_action :login_required
+  before_action :login_required, only: [:destroy]
+
   def new
     @user = User.new
   end
