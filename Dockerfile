@@ -6,12 +6,18 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && apt-get update -qq \
     && apt-get install -y nodejs yarn postgresql-client libpq-dev
 
+# Node.jsのバージョン指定
+RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
+RUN apt-get install -y nodejs
 
 WORKDIR /find_craft_beer
+RUN yarn install --check-files
 COPY Gemfile /find_craft_beer/Gemfile
 COPY Gemfile.lock /find_craft_beer/Gemfile.lock
 
 RUN bundle install
+
+RUN yarn add @babel/plugin-proposal-private-methods
 
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/

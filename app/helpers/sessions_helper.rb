@@ -15,10 +15,4 @@ module SessionsHelper
     # ユーザーがログインしていない限り、ログイン画面にリダイレクト
     redirect_to login_path unless current_user
   end
-
-  def log_out
-    session.delete(:user_id)
-    @current_user = nil
-  end
-
 end

@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email].downcase)
       # ユーザーが見つかった場合、送られてきたパスワードによる認証をauthenticateメソッドを使って行う
       if user && user.authenticate(params[:password])
-        # 認証に成功した場合に、セッションにuser_idを格納しています。
+        # ユーザー登録を行った際、同時にログイン処理も行うようにしています。
         log_in(user)
         redirect_to profile_path(user), notice: "ログインしました"
       else
@@ -19,7 +19,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    log_out
+    reset_session
     redirect_to login_path, notice: "ログアウトしました"
   end
 end
