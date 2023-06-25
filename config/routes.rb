@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :craft_beer_shops
+
   # ユーザー登録・退会
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
