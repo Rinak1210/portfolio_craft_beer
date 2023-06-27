@@ -1,5 +1,5 @@
 <h1>ログイン</h1>
-
+<%= flash[:notice] %>
 <%= form_with model: @session, local: true do |form| %>
   <%= flash[:danger] %>
 

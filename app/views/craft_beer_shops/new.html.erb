@@ -1,2 +1,25 @@
-<h1>CraftBeerShops#new</h1>
-<p>Find me in app/views/craft_beer_shops/new.html.erb</p>
+<h1>新規投稿</h1>
+<%= flash[:notice] %>
+
+<%= form_with model: @craft_beer_shop,local: true do |form| %>
+
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+
+  <div>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.submit "お気に入りのクラフトビールスポットを投稿する" %>
+  </div>
+<% end %>
+<%= link_to "みんなのお気に入りのクラフトビールスポット一覧へ戻る", craft_beer_shops_path %>

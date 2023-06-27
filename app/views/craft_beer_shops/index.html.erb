@@ -1,2 +1,24 @@
-<h1>CraftBeerShops#index</h1>
-<p>Find me in app/views/craft_beer_shops/index.html.erb</p>
+<h1>みんなの🍺投稿一覧</h1>
+<%= flash[:notice] %>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">クラフトビール 店名</th>
+      <th scope="col">住所</th>
+      <th scope="col">おすすめポイント</th>
+      <th scope="col">投稿管理</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @craft_beer_shops.each do |craft_beer_shop| %>
+    <tr>
+      <td><%= craft_beer_shop.name %></td>
+      <td><%= craft_beer_shop.address %></td>
+      <td><%= craft_beer_shop.description %></td>
+      <td><%= link_to "投稿を削除する", craft_beer_shop, method: :delete, data:{confirm: "本当に削除しますか？" } %></td>
+    </tr>
+  <% end %>
+  </tbody>
+  </table>
+
+  <%= link_to "新規投稿する", new_craft_beer_shop_path, class: 'btn btn-primary' %>
