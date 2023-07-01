@@ -11,6 +11,29 @@
   </head>
 
   <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">HOME</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-link active" aria-current="page" href="#">ABOUT</a>
+            <a class="nav-link" href="/craft_beer_shops">INDEX</a>
+            <!-- もし既にサインインしている場合-->
+            <% if @current_user %>
+              <a class="nav-link" href="/users/<%= @current_user.id %>">MY PAGE</a>
+              <a class="nav-link" href="/logout" data-method="delete">LOGOUT</a>
+            <!-- まだサインインしていない場合-->
+            <% else %>
+              <a class="nav-link" href="#">LOGIN</a>
+              <a class="nav-link" href="#">SIGN UP</a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </nav>
     <%= yield %>
   </body>
 </html>

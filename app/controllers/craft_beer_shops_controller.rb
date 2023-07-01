@@ -33,7 +33,8 @@ class CraftBeerShopsController < ApplicationController
   def update
     @craft_beer_shop = CraftBeerShop.find(params[:id])
     if @craft_beer_shop.update(craft_beer_shop_params)
-      frash[:notice] = "投稿を編集しました"
+      flash[:notice] = "更新しました"
+      redirect_to craft_beer_shops_path
     else
       flash[:notice] = @craft_beer_shop.errors.full_messages
       render action: :edit

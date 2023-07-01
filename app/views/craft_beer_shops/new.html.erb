@@ -2,24 +2,23 @@
 <%= flash[:notice] %>
 
 <%= form_with model: @craft_beer_shop,local: true do |form| %>
+  <div class="mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
 
-  <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="mb-3">
+    <%= form.label :address, class: "form-label" %>
+    <%= form.text_field :address, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :description, class: "form-label" %>
+    <%= form.text_area :description, class: "form-control" %>
   </div>
 
   <div>
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-  </div>
-
-  <div>
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div>
-    <%= form.submit "お気に入りのクラフトビールスポットを投稿する" %>
+    <%= form.submit "お気に入りのクラフトビールスポットを投稿する", class: "btn btn-primary" %>
   </div>
 <% end %>
 <%= link_to "みんなのお気に入りのクラフトビールスポット一覧へ戻る", craft_beer_shops_path %>
