@@ -1,7 +1,8 @@
 <h1>新規投稿</h1>
 <%= flash[:notice] %>
 
-<%= form_with model: @craft_beer_shop,local: true do |form| %>
+<div class = "form">
+  <%= form_with model: @craft_beer_shop,local: true do |form| %>
   <div class="mb-3">
     <%= form.label :name, class: "form-label" %>
     <%= form.text_field :name, class: "form-control" %>
@@ -20,5 +21,6 @@
   <div>
     <%= form.submit "お気に入りのクラフトビールスポットを投稿する", class: "btn btn-primary" %>
   </div>
-<% end %>
+  <% end %>
+</div>
 <%= link_to "みんなのお気に入りのクラフトビールスポット一覧へ戻る", craft_beer_shops_path %>

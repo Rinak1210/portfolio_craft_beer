@@ -1,26 +1,27 @@
 <h1>ユーザー新規登録</h1>
+<div class = "form">
+  <%= form_with model: @user, url: signup_path, local: true do |form| %>
+    <% if @user.errors.any? %>
+      <strong><%= @user.errors.count %>個のエラーがあります。</strong>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    <% end %>
 
-<%= form_with model: @user, url: signup_path, local: true do |form| %>
-  <% if @user.errors.any? %>
-    <strong><%= @user.errors.count %>個のエラーがあります。</strong>
-    <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  <% end %>
+    <%= form.label :name, 'ユーザーネーム' %>
+    <%= form.text_field :name %>
 
-  <%= form.label :name, 'ユーザーネーム' %>
-  <%= form.text_field :name %>
+    <%= form.label :email, 'メールアドレス' %>
+    <%= form.email_field :email %>
 
-  <%= form.label :email, 'メールアドレス' %>
-  <%= form.email_field :email %>
+    <%= form.label :password, 'パスワード' %>
+    <%= form.password_field :password %>
 
-  <%= form.label :password, 'パスワード' %>
-  <%= form.password_field :password %>
+    <%= form.label :password_confirmation, 'パスワード(確認)' %>
+    <%= form.password_field :password_confirmation %>
 
-  <%= form.label :password_confirmation, 'パスワード(確認)' %>
-  <%= form.password_field :password_confirmation %>
-
-  <%= form.submit '登録' %>
+    <%= form.submit '登録' %>
+</div>
 <% end %>

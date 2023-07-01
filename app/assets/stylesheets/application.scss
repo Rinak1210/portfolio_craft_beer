@@ -1,1 +1,18 @@
 @import "bootstrap";
+
+h1 {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* コンテナの高さを画面の高さに合わせる場合 */
+}
+
+p, a, button {
+  text-align: center;
+  margin: 10px 0;
+}
