@@ -1,6 +1,6 @@
 class CraftBeerShop < ApplicationRecord
   belongs_to :user
-  has_many_attached :photos
+  has_one_attached :image
 
   validates :name, presence: true
   validates :description, presence: true

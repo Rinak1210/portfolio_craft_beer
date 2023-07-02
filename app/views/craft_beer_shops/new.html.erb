@@ -18,6 +18,11 @@
     <%= form.text_area :description, class: "form-control" %>
   </div>
 
+  <div class="mb-3">
+    <%= form.label :images, class: "form-label" %>
+    <%= form.file_field :images, multiple: true, class: "form-label" %>
+  </div>
+
   <div>
     <%= form.submit "お気に入りのクラフトビールスポットを投稿する", class: "btn btn-primary" %>
   </div>

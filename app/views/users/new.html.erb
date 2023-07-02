@@ -9,19 +9,28 @@
         <% end %>
       </ul>
     <% end %>
+    <div class="mb-3">
+      <%= form.label :name, 'ユーザーネーム' %>
+      <%= form.text_field :name %>
+    </div>
 
-    <%= form.label :name, 'ユーザーネーム' %>
-    <%= form.text_field :name %>
+    <div class="mb-3">
+      <%= form.label :email, 'メールアドレス' %>
+      <%= form.email_field :email %>
+    </div>
 
-    <%= form.label :email, 'メールアドレス' %>
-    <%= form.email_field :email %>
+    <div class="mb-3">
+      <%= form.label :password, 'パスワード' %>
+      <%= form.password_field :password %>
+    </div>
 
-    <%= form.label :password, 'パスワード' %>
-    <%= form.password_field :password %>
+    <div class="mb-3">
+      <%= form.label :password_confirmation, 'パスワード(確認)' %>
+      <%= form.password_field :password_confirmation %>
+    </div>
 
-    <%= form.label :password_confirmation, 'パスワード(確認)' %>
-    <%= form.password_field :password_confirmation %>
-
-    <%= form.submit '登録' %>
+    <div class="mb-3">
+      <%= form.submit '登録', class: "btn btn-primary" %>
+    </div>
+  <% end %>
 </div>
-<% end %>

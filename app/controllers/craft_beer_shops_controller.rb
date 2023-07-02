@@ -43,9 +43,13 @@ class CraftBeerShopsController < ApplicationController
 
   def destroy
     @craft_beer_shop = CraftBeerShop.find(params[:id])
-    @craft_beer_shop.destroy
-    flash[:notice] = "投稿を削除しました"
-    redirect_to craft_beer_shops_path
+    if @craft_beer_shop.destroy
+      flash[:notice] = "投稿を削除しました"
+      redirect_to craft_beer_shops_path
+    else
+      flash.now[:danger] = "削除に失敗しました"
+      render action: :index
+    end
   end
 
   private

@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       if user && user.authenticate(params[:password])
         # ユーザー登録を行った際、同時にログイン処理も行うようにしています。
         log_in(user)
-        flash[:notice] = "更新しました"
+        flash[:notice] = "ログインしました"
         redirect_to profile_path(user)
       else
         flash.now[:danger] = 'ログインに失敗しました'

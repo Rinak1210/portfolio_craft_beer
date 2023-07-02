@@ -1,15 +1,23 @@
 @import "bootstrap";
+@import "users.scss";
+/*
+ *= require_tree .
+ *= require_self
+ */
 
 h1 {
   text-align: center;
+  margin-bottom: 0px;
+  margin-top: 50px;
 }
 
-.container {
+.container, .form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh; /* コンテナの高さを画面の高さに合わせる場合 */
+  //margin-top: 70px;
 }
 
 p, a, button {
