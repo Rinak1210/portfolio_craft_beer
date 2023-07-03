@@ -1,6 +1,6 @@
-<h1>ユーザー登録情報</h1>
+<h1 class="text-red">ユーザー登録情報</h1>
 <%= flash[:notice] %>
-<div class = "container">
+<div class="contents">
   <p>ユーザーネーム：<%= @user.name %></p>
   <p>メールアドレス：<%= @user.email %></p>
   <%= link_to "新規投稿する", new_craft_beer_shop_path, class: 'btn btn-primary' %>

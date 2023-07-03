@@ -55,6 +55,6 @@ class CraftBeerShopsController < ApplicationController
   private
 
   def craft_beer_shop_params
-    params.require(:craft_beer_shop).permit(:name, :address, :description)
+    params.require(:craft_beer_shop).permit(:name, :address, :description, images: [])
   end
 end
