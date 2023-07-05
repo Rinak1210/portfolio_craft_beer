@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+    @craft_beer_shops = @user.craft_beer_shops
   end
 
   def destroy

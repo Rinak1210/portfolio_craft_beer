@@ -24,6 +24,7 @@ class CraftBeerShopsController < ApplicationController
   end
 
   def show
+    @craft_beer_shop = CraftBeerShop.find(params[:id])
   end
 
   def edit

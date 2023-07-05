@@ -1,3 +1,41 @@
-<h1>CraftBeerShops#show</h1>
-<p>Find me in app/views/craft_beer_shops/show.html.erb</p>
-<%= flash[:danger] %>
+<h1>投稿詳細</h1>
+
+<div class="container">
+  <% if @craft_beer_shop.images.attached? %>
+    <div class="row">
+      <% @craft_beer_shop.images.each do |image| %>
+        <div class="col-md-3">
+          <%= image_tag image, class: 'img-fluid' %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <table class="details_of_post">
+    <tr>
+      <th>クラフトビール 店名 </th>
+      <td><%= @craft_beer_shop.name %></td>
+    </tr>
+
+    <tr>
+      <th>住所</th>
+      <td><%= @craft_beer_shop.address %></td>
+    </tr>
+
+    <tr>
+      <th>おすすめポイント</th>
+        <td><%= @craft_beer_shop.description %></td>
+    </tr>
+
+    <tr>
+      <th>投稿日</th>
+      <td><%= l @craft_beer_shop.created_at %></td>
+    </tr>
+
+  </table>
+
+  <% if @craft_beer_shop.user_id == current_user.id %>
+    <%= button_to "編集", edit_craft_beer_shop_path(@craft_beer_shop.id), class: "btn btn-sm btn-success" %>
+    <%= button_to "削除", @craft_beer_shop, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger" %>
+  <% end %>
+</div>
