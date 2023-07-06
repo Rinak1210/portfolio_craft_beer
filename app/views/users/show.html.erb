@@ -1,43 +1,44 @@
-<h1 class="text-red">ユーザー登録情報</h1>
+<h1>ユーザー登録情報</h1>
 <%= flash[:notice] %>
 <div class="contents">
   <p>ユーザーネーム：<%= @user.name %></p>
   <p>メールアドレス：<%= @user.email %></p>
   <p><%= button_to 'ログアウト', logout_path, method: :delete, data: { confirm: 'ログアウトしますか？' } %></p>
   <p><%= button_to '退会', unsubscribe_path(@user), method: :delete, data: { confirm: '本当に退会しますか？' } %></p>
-</div>
-
-<h2><%= current_user.name %>さんの投稿一覧</h2>  <%= link_to "新規投稿する", new_craft_beer_shop_path, class: 'btn btn-primary' %>
+  <div class="my-posts">
+  <h3>〜<%= current_user.name %>さんの投稿一覧〜</h3>  <%= link_to "新規投稿する", new_craft_beer_shop_path, class: 'btn btn-primary' %>
   <table class ="table table-striped">
-    <thead>
-      <tr>
-        <th>投稿ID</th>
-        <th>写真</th>
-        <th>クラフトビール 店名</th>
-        <th>住所</th>
-        <th>おすすめポイント</th>
-        <th>投稿日</th>
-        <th>編集</th>
-        <th>削除</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @craft_beer_shops.each do |craft_beer_shop| %>
+      <thead>
         <tr>
-        <tr>
-          <td><%= craft_beer_shop.id %></td>
-          <% if craft_beer_shop.images.attached? %>
-            <td><%= image_tag craft_beer_shop.images.first.variant(resize: "70x60") %></td>
-          <% else %>
-            <td><%= image_tag "no_image.jpg", :size => '70x60', alt: "No Image" %></td>
-          <% end %>
-          <td><%= link_to craft_beer_shop.name, craft_beer_shop %></td>
-          <td><%= craft_beer_shop.address %></td>
-          <td><%= craft_beer_shop.description.truncate(15) %></td>
-          <td><%= l craft_beer_shop.created_at %></td>
-          <td><%= button_to "編集", edit_craft_beer_shop_path(craft_beer_shop), class: "btn btn-sm btn-success" if craft_beer_shop.user_id == current_user.id %></td>
-          <td><%= button_to "削除", craft_beer_shop, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger" if craft_beer_shop.user_id == current_user.id %></td>
+          <th>投稿ID</th>
+          <th>写真</th>
+          <th>クラフトビール 店名</th>
+          <th>住所</th>
+          <th>おすすめポイント</th>
+          <th>投稿日</th>
+          <th>編集</th>
+          <th>削除</th>
         </tr>
-      <% end %>
-    </tbody>
+      </thead>
+      <tbody>
+        <% @craft_beer_shops.each do |craft_beer_shop| %>
+          <tr>
+          <tr>
+            <td><%= craft_beer_shop.id %></td>
+            <% if craft_beer_shop.images.attached? %>
+              <td><%= image_tag craft_beer_shop.images.first.variant(resize: "70x60") %></td>
+            <% else %>
+              <td><%= image_tag "no_image.jpg", :size => '70x60', alt: "No Image" %></td>
+            <% end %>
+            <td><%= link_to craft_beer_shop.name, craft_beer_shop %></td>
+            <td><%= craft_beer_shop.address %></td>
+            <td><%= craft_beer_shop.description.truncate(15) %></td>
+            <td><%= l craft_beer_shop.created_at %></td>
+            <td><%= button_to "編集", edit_craft_beer_shop_path(craft_beer_shop), class: "btn btn-sm btn-success" if craft_beer_shop.user_id == current_user.id %></td>
+            <td><%= button_to "削除", craft_beer_shop, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger" if craft_beer_shop.user_id == current_user.id %></td>
+          </tr>
+        <% end %>
+      </tbody>
   </table>
+  </div>
+</div>

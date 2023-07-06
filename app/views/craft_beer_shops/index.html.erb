@@ -2,12 +2,9 @@
 
 <%= flash[:notice] %>
 
-<div class="sub-infomation">
+<div class="contents">
   <p>現在のユーザー：<%= current_user.name %></p>
   <p><%= link_to "新規投稿する", new_craft_beer_shop_path, class: 'btn btn-primary' %></p>
-</div>
-
-<div class="contents">
   <table class="table table-striped table-hover">
     <thead>
       <tr>
@@ -21,27 +18,27 @@
       </tr>
     </thead>
     <tbody>
-    <% @craft_beer_shops.each do |craft_beer_shop| %>
-      <tr>
-        <th scope="row"><%= craft_beer_shop.id %></th>
-        <% if craft_beer_shop.images.attached? %>
-          <% image = craft_beer_shop.images.first %>
-          <td><%= image_tag image, :size => '70x60' %></td>
-        <% else %>
-          <td><%= image_tag "no_image.jpg", :size => '70x60', alt: "No Image" %></td>
-        <% end %>
-        <td><%=link_to "#{craft_beer_shop.name}", [craft_beer_shop] %></td>
-        <td><%= craft_beer_shop.description.truncate(15) %></td>
-        <td><%= l craft_beer_shop.created_at %></td>
-        <% if craft_beer_shop.user_id == current_user.id %>
-          <td><%= button_to "編集", edit_craft_beer_shop_path(craft_beer_shop.id), class: "btn btn-sm btn-success" %></td>
-          <td><%= button_to "削除", craft_beer_shop, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger" %></td>
-        <% else %>
-        <td></td>
-        <td></td>
-        <% end %>
-      </tr>
-    <% end %>
+      <% @craft_beer_shops.each do |craft_beer_shop| %>
+        <tr>
+          <th scope="row"><%= craft_beer_shop.id %></th>
+          <% if craft_beer_shop.images.attached? %>
+            <% image = craft_beer_shop.images.first %>
+            <td><%= image_tag image, :size => '70x60' %></td>
+          <% else %>
+            <td><%= image_tag "no_image.jpg", :size => '70x60', alt: "No Image" %></td>
+          <% end %>
+          <td><%=link_to "#{craft_beer_shop.name}", [craft_beer_shop] %></td>
+          <td><%= craft_beer_shop.description.truncate(15) %></td>
+          <td><%= l craft_beer_shop.created_at %></td>
+          <% if craft_beer_shop.user_id == current_user.id %>
+            <td><%= button_to "編集", edit_craft_beer_shop_path(craft_beer_shop.id), class: "btn btn-sm btn-success" %></td>
+            <td><%= button_to "削除", craft_beer_shop, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger" %></td>
+          <% else %>
+          <td></td>
+          <td></td>
+          <% end %>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 </div>
