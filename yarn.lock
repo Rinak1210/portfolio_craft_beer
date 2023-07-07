@@ -1132,50 +1132,6 @@
     webpack-cli "^3.3.12"
     webpack-sources "^1.4.3"
 
-"@rails/webpacker@5.4.4":
-  version "5.4.4"
-  resolved "https://registry.yarnpkg.com/@rails/webpacker/-/webpacker-5.4.4.tgz#971a41b987c096c908ce4088accd57c1a9a7e2f7"
-  integrity sha512-hp9myb2MChYFPfE5Fd/3gF4q2m4wpxC+WWCkxcg6My3HYCptWuqMVXRwrBZ5EJHYiL/WRyMLvVNWwlFV47xhUw==
-  dependencies:
-    "@babel/core" "^7.15.0"
-    "@babel/plugin-proposal-class-properties" "^7.14.5"
-    "@babel/plugin-proposal-object-rest-spread" "^7.14.7"
-    "@babel/plugin-syntax-dynamic-import" "^7.8.3"
-    "@babel/plugin-transform-destructuring" "^7.14.7"
-    "@babel/plugin-transform-regenerator" "^7.14.5"
-    "@babel/plugin-transform-runtime" "^7.15.0"
-    "@babel/preset-env" "^7.15.0"
-    "@babel/runtime" "^7.15.3"
-    babel-loader "^8.2.2"
-    babel-plugin-dynamic-import-node "^2.3.3"
-    babel-plugin-macros "^2.8.0"
-    case-sensitive-paths-webpack-plugin "^2.4.0"
-    compression-webpack-plugin "^4.0.1"
-    core-js "^3.16.2"
-    css-loader "^3.6.0"
-    file-loader "^6.2.0"
-    flatted "^3.2.2"
-    glob "^7.1.7"
-    js-yaml "^3.14.1"
-    mini-css-extract-plugin "^0.9.0"
-    optimize-css-assets-webpack-plugin "^5.0.8"
-    path-complete-extname "^1.0.0"
-    pnp-webpack-plugin "^1.7.0"
-    postcss-flexbugs-fixes "^4.2.1"
-    postcss-import "^12.0.1"
-    postcss-loader "^3.0.0"
-    postcss-preset-env "^6.7.0"
-    postcss-safe-parser "^4.0.2"
-    regenerator-runtime "^0.13.9"
-    sass "^1.38.0"
-    sass-loader "10.1.1"
-    style-loader "^1.3.0"
-    terser-webpack-plugin "^4.2.3"
-    webpack "^4.46.0"
-    webpack-assets-manifest "^3.1.1"
-    webpack-cli "^3.3.12"
-    webpack-sources "^1.4.3"
-
 "@types/glob@^7.1.1":
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/@types/glob/-/glob-7.2.0.tgz#bc1b5bf3aa92f25bd5dd39f35c57361bdce5b2eb"
@@ -1198,16 +1154,6 @@
   version "20.4.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-20.4.0.tgz#01d637d1891e419bc85763b46f42809cd2d5addb"
   integrity sha512-jfT7iTf/4kOQ9S7CHV9BIyRaQqHu67mOjsIQBC3BKZvzvUB6zLxEwJ6sBE3ozcvP8kF6Uk5PXN0Q+c0dfhGX0g==
-
-"@types/parse-json@^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@types/parse-json/-/parse-json-4.0.0.tgz#2f8bb441434d163b35fb8ffdccd7138927ffb8c0"
-  integrity sha512-//oorEZjL6sbPcKUaCdIGlIUeH26mgzimjBB77G6XRgnDl/L5wOnpyBGRe/Mmf5CVW3PwEBE1NjiMZ/ssFh4wA==
-
-"@types/q@^1.5.1":
-  version "1.5.5"
-  resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.5.tgz#75a2a8e7d8ab4b230414505d92335d1dcb53a6df"
-  integrity sha512-L28j2FcJfSZOnL1WBjDYp2vUHCeIFlyYI/53EwD/rKUBQ7MtUUfbQWiyKJGpcnv4/WgrhWsFKrcPstcAt/J0tQ==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
