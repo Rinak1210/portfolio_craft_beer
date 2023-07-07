@@ -7,20 +7,15 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.lis
 
 RUN  apt-get update -qq && apt-get install -y nodejs yarn postgresql-client libpq-dev
 
-# Node.jsのバージョン指定
-RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get install -y nodejs
 
 WORKDIR /find_craft_beer
-RUN yarn install --check-files
 COPY Gemfile /find_craft_beer/Gemfile
 COPY Gemfile.lock /find_craft_beer/Gemfile.lock
 
 RUN bundle install
-
 RUN yarn install
-RUN rails webpacker:install
-RUN rails webpacker:compile
+
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
