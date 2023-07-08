@@ -35,6 +35,6 @@
 
   <% if @craft_beer_shop.user_id == current_user.id %>
       <a><%= link_to "編集", edit_craft_beer_shop_path(@craft_beer_shop.id), class: "btn btn-sm btn-success" %></a>
-      <a><%= button_to "削除", @craft_beer_shop, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger" %></a>
+      <a><%= link_to "削除", @craft_beer_shop, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger" %></a>
   <% end %>
 </div>
