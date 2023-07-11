@@ -13,6 +13,7 @@
         <th scope="col">クラフトビール 店名</th>
         <th scope="col">おすすめポイント</th>
         <th scope="col">投稿日</th>
+        <th scope="col">いいね</th>
         <th scope="col">編集</th>
         <th scope="col">削除</th>
       </tr>
@@ -30,6 +31,11 @@
           <td><%=link_to "#{craft_beer_shop.name}", [craft_beer_shop] %></td>
           <td><%= craft_beer_shop.description.truncate(15) %></td>
           <td><%= l craft_beer_shop.created_at %></td>
+          <td>
+            <div class="favorites" id="favorite_<%= craft_beer_shop.id %>">
+              <%= render 'favorites/favorite', craft_beer_shop: craft_beer_shop %>
+            </div>
+          </td>
           <% if craft_beer_shop.user_id == current_user.id %>
             <td><%= link_to "編集", edit_craft_beer_shop_path(craft_beer_shop.id), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to "削除", craft_beer_shop, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger" %></td>

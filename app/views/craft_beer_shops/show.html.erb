@@ -31,6 +31,15 @@
       <th scope="col">投稿日</th>
       <td><%= l @craft_beer_shop.created_at %></td>
     </tr>
+
+    <tr>
+      <th scope="col">いいね</th>
+      <td>
+        <div class="favorites" id="favorite_<%= @craft_beer_shop.id %>"><!--idにして特定してJSを処理-->
+          <%= render 'favorites/favorite', craft_beer_shop: @craft_beer_shop %>
+        </div>
+    </td>
+    </tr>
   </table>
 
   <% if @craft_beer_shop.user_id == current_user.id %>

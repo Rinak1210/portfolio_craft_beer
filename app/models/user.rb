@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   has_many :craft_beer_shops, dependent: :destroy
 
+  # いいね機能のアソシエーション処理
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_craft_beer_shops, through: :favorites, source: :craft_beer_shop
+
   before_save { self.email = email.downcase }
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

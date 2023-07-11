@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :craft_beer_shops
+  get 'favorites/create'
+  get 'favorites/destroy'
+  resources :craft_beer_shops do
+    resource :favorites, only: [:create, :destroy]
+  end
 
   # ユーザー登録・退会
   get '/signup', to: 'users#new'
@@ -10,6 +14,5 @@ Rails.application.routes.draw do
   # ログイン・ログアウト
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
-  #get '/logout', to: 'sessions#destroy' # 追加、ここはlink toの問題が解決したら消す
   delete '/logout', to: 'sessions#destroy'
 end

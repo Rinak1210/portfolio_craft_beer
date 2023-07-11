@@ -1,0 +1,19 @@
+<% if current_user.present? %>
+  <% if current_user.favorites.find_by(craft_beer_shop_id: craft_beer_shop.id) %>
+    <!-- いいね 解除 ボタン -->
+    <%= link_to craft_beer_shop_favorites_path(craft_beer_shop.id), method: :delete, remote: true do %>
+      <div><i class="fa-solid fa-heart" style="color: #e6200a;"></i></div>
+      <div class="text">いいね！</div>
+      <!-- いいね数の表示 -->
+      <div class="count"><%= craft_beer_shop.favorites.count %></div>
+    <% end %>
+  <% else %>
+    <!-- いいねボタン❤ -->
+    <%= link_to craft_beer_shop_favorites_path(craft_beer_shop.id), method: :post, remote: true do %>
+      <div><i class="fa-regular fa-heart"></i></div>
+      <div class="text">いいね！</div>
+      <!-- いいね数の表示 -->
+      <div class="count"><%= craft_beer_shop.favorites.count %></div>
+    <% end %>
+  <% end %>
+<% end %>

@@ -97,6 +97,8 @@ GEM
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
     ffi (1.15.5)
+    font-awesome-rails (4.7.0.8)
+      railties (>= 3.2, < 8.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
     i18n (1.14.1)
@@ -140,6 +142,8 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.9)
+    nokogiri (1.15.3-x86_64-darwin)
+      racc (~> 1.4)
     nokogiri (1.15.3-x86_64-linux)
       racc (~> 1.4)
     parallel (1.23.0)
@@ -319,6 +323,7 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   factory_bot_rails
+  font-awesome-rails
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
   jquery-rails
