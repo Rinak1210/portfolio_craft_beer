@@ -34,11 +34,9 @@
 
     <tr>
       <th scope="col">いいね</th>
-      <td>
-        <div class="favorites" id="favorite_<%= @craft_beer_shop.id %>"><!--idにして特定してJSを処理-->
-          <%= render 'favorites/favorite', craft_beer_shop: @craft_beer_shop %>
-        </div>
-    </td>
+      <td id="favorite_<%= @craft_beer_shop.id %>"><!--idにして特定してJSを処理-->
+        <%= render 'favorites/favorite', craft_beer_shop: @craft_beer_shop %>
+      </td>
     </tr>
   </table>
 

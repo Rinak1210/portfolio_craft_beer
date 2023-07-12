@@ -1,1 +1,1 @@
-$('#favorite_<%= @craft_beer_shop.id %>').html("<%= j(render "favorites/favorite", locals: {craft_beer_shop: @craft_beer_shop}) %>");
+$('#favorite_<%= @craft_beer_shop.id %>').html("<%= j(render "favorites/favorite", craft_beer_shop: @craft_beer_shop) %>");

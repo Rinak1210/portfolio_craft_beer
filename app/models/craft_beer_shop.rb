@@ -9,4 +9,8 @@ class CraftBeerShop < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: true
   validates :user_id, presence: true
+
+  def already_favorited?(user_id)
+    favorites.find_by(user_id: user_id)
+  end
 end
