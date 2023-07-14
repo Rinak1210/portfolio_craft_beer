@@ -3,14 +3,12 @@ class FavoritesController < ApplicationController
 
   # Ajax通信用
   def create
-    @favorite = current_user.favorites.new(craft_beer_shop_id: @craft_beer_shop.id)
-    @favorite.save
+    current_user.favorites.new(craft_beer_shop_id: @craft_beer_shop.id).save
   end
 
   # Ajax通信用
   def destroy
-    @favorite = current_user.favorites.find_by(craft_beer_shop_id: @craft_beer_shop.id)
-    @favorite.destroy
+    current_user.favorites.find_by(craft_beer_shop_id: @craft_beer_shop.id).destroy
   end
 
   private

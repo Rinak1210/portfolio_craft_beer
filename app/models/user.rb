@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_many :craft_beer_shops, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_one_attached :image
 
   # いいね機能のアソシエーション処理
   has_many :favorites, dependent: :destroy

@@ -24,7 +24,7 @@
           <th scope="row"><%= craft_beer_shop.id %></th>
           <% if craft_beer_shop.images.attached? %>
             <% image = craft_beer_shop.images.first %>
-            <td><%= image_tag image, :size => '70x60' %></td>
+            <td><%= image_tag image, size: '70x60' %></td>
           <% else %>
             <td><%= image_tag "no_image.jpg", :size => '70x60', alt: "No Image" %></td>
           <% end %>

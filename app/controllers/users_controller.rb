@@ -20,6 +20,20 @@ class UsersController < ApplicationController
     @craft_beer_shops = @user.craft_beer_shops
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to profile_path(@user), notice: "ユーザー情報を更新しました"
+    else
+      flash[:notice] = @user.errors.full_messages
+      render 'edit'
+    end
+  end
+
   def destroy
     user = User.find(params[:id])
     user.destroy
@@ -28,6 +42,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :image)
   end
 end
