@@ -1,0 +1,24 @@
+<table>
+  <tbody>
+    <% if craft_beer_shop.comments.any? %>
+      <% craft_beer_shop.comments.each do |comment| %>
+        <tr>
+          <td>
+            <%= link_to profile_path(comment.user) do %>
+              <%= image_tag comment.user.image, size: "50x50" %><br>
+              <%= comment.user.name %>
+            <% end %>
+          </td>
+          <td><%= comment.content %></td>
+          <td>
+            <% if comment.user == current_user %>
+              <%= link_to "削除", craft_beer_shop_comment_path(craft_beer_shop, comment), method: :delete, remote: true, class: "btn btn-sm btn-danger float-end" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <p>コメントはまだありません</p>
+    <% end %>
+  </tbody>
+</table>
