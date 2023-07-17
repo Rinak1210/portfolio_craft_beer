@@ -42,11 +42,11 @@
     <tr>
       <th scope="col">コメント</th>
       <td id="comments_area"><!--idにして特定してJSを処理-->
-        <%= render 'views/comments/index', craft_beer_shop: @craft_beer_shop %>
+        <%= render 'comments/index', craft_beer_shop: @craft_beer_shop %>
       </td>
       <% if @craft_beer_shop.user_id == current_user.id %>
         <td class = "comment-create">レビューを投稿
-          <%= render 'views/comments/comment', comment: @comment, craft_beer_shop: @craft_beer_shop %>
+          <%= render 'comments/comment', comment: @comment, craft_beer_shop: @craft_beer_shop %>
         </td>
       <% end %>
     </tr>
