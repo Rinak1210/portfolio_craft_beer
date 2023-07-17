@@ -3,7 +3,7 @@
   <%= render 'layouts/error_messages', model: @comment %>
 </div>
 
-<%= form_with(model: [craft_beer_shop, comment], url: craft_beer_shop_comments_path(@craft_beer_shop), local: false ) do |f| %>
+<%= form_with(model: [craft_beer_shop, comment], local: false ) do |f| %>
     <%= f.text_area :content, rows:'5', placeholder: "コメントを入力", class: "w-100" %>
     <%= f.submit "送信", class: "btn btn-outline-dark comment-submit float-right" %>
 <% end %>

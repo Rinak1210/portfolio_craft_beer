@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     @comment.craft_beer_shop_id = @craft_beer_shop.id
     if @comment.save
       flash.now[:notice] = 'コメントを投稿しました'
-      render :comment
+      render :index
     else
       render :error
     end
@@ -19,12 +19,12 @@ class CommentsController < ApplicationController
     flash.now[:alert] = '投稿を削除しました'
     #renderしたときに@craft_beer_shopのデータがないので@postを定義
     @craft_beer_shop = CraftBeerShop.find(params[:craft_beer_shop_id])
-    render :comment  #render先にjsファイルを指定
+    render :index
   end
 
   private
 
   def comment_params
-    params.require(:comment).permit(:content)
+    params.require(:comment).permit(:content, :user_id, :craft_beer_shop_id)
   end
 end

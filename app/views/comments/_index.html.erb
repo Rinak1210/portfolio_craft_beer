@@ -12,7 +12,7 @@
           <td><%= comment.content %></td>
           <td>
             <% if comment.user == current_user %>
-              <%= link_to "削除", craft_beer_shop_comment_path(craft_beer_shop, comment), method: :delete, remote: true, class: "btn btn-sm btn-danger float-end" %>
+              <%= link_to "削除", craft_beer_shop_comment_path(comment.craft_beer_shop_id, comment.id), method: :delete, remote: true, class: "btn btn-sm btn-danger float-end" %>
             <% end %>
           </td>
         </tr>
