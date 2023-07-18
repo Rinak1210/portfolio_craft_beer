@@ -15,9 +15,9 @@ class CommentsController < ApplicationController
 
   # Ajax通信用
   def destroy
-    Comment.find_by(params[:id], craft_beer_shop_id: params[:craft_beer_shop_id]).destroy
+    Comment.find_by(id: params[:id], craft_beer_shop_id: params[:craft_beer_shop_id]).destroy
     flash.now[:alert] = '投稿を削除しました'
-    #renderしたときに@craft_beer_shopのデータがないので@postを定義
+    #renderしたときに@craft_beer_shopのデータがないので@craft_beer_shopを定義
     @craft_beer_shop = CraftBeerShop.find(params[:craft_beer_shop_id])
     render :index
   end
