@@ -1,5 +1,35 @@
 <h1>みんなの🍺投稿一覧</h1>
 
+<div id="map" style="height: 400px;"></div>
+<script>
+  let map
+
+  function initMap(){
+    geocoder = new google.maps.Geocoder()
+
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 35.68123620000001, lng:139.7671248},
+        zoom: 12,
+    });
+
+
+    <% @craft_beer_shops.each do |shop| %>
+        (function(){
+        var contentString = "住所：<%= shop.address %>";
+
+        var marker = new google.maps.Marker({
+            position:{lat: <%= shop.latitude %>, lng: <%= shop.longitude %>},
+            map: map,
+            title: contentString
+        });
+
+        })();
+    <% end %>
+    }
+</script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" type="text/javascript"></script>
+
 <div class="contents">
   <p>現在のユーザー：<%= current_user.name %></p>
   <p><%= link_to "新規投稿する", new_craft_beer_shop_path, class: 'btn btn-primary' %></p>
