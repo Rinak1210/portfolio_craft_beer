@@ -29,47 +29,55 @@
 <style type="text/css">
   #map { height: 200px;
         width: 70%;
-        margin: 0 auto;}
+        margin: 0 auto;
+        margin-bottom: 20px;}
 </style>
 <div id="map"></div>
 
-<div class="container">
-  <% if @craft_beer_shop.images.attached? %>
-    <div class="row">
-      <% @craft_beer_shop.images.each do |image| %>
-        <div class="col-md-3">
-          <%= image_tag image, class: 'img-fluid' %>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-
-  <table class="table">
+  <table class="table table-light table-striped">
     <tr>
       <th scope="col">クラフトビール 店名 </th>
       <td><%= @craft_beer_shop.name %></td>
+      <td></td>
     </tr>
 
     <tr>
       <th scope="col">住所</th>
       <td><%= @craft_beer_shop.address %></td>
+      <td></td>
     </tr>
 
     <tr>
       <th scope="col">おすすめポイント</th>
         <td><%= @craft_beer_shop.description %></td>
+        <td></td>
     </tr>
 
+
+  <% if @craft_beer_shop.images.attached? %>
     <tr>
-      <th scope="col">投稿日</th>
-      <td><%= l @craft_beer_shop.created_at %></td>
+      <th scope="col">写真</th>
+      <% @craft_beer_shop.images.each_slice(2) do |image1, image2| %>
+        <td>
+          <div class="row">
+            <div class="col-md-6">
+              <%= image_tag image1, class: 'img-fluid' if image1 %>
+            </div>
+            <div class="col-md-6">
+              <%= image_tag image2, class: 'img-fluid' if image2 %>
+            </div>
+          </div>
+        </td>
+      <% end %>
     </tr>
+  <% end %>
 
     <tr>
       <th scope="col">いいね</th>
       <td id="favorite_<%= @craft_beer_shop.id %>"><!--idにして特定してJSを処理-->
         <%= render 'favorites/favorite', craft_beer_shop: @craft_beer_shop %>
       </td>
+      <td></td>
     </tr>
 
     <tr>
@@ -77,21 +85,24 @@
       <td id="comments_area"><!--idにして特定してJSを処理-->
         <%= render 'comments/index', comments: @comments, craft_beer_shop: @craft_beer_shop %>
       </td>
-      <% if @craft_beer_shop.user_id == current_user.id %>
+      <% if @craft_beer_shop.user_id != current_user.id %>
         <td class = "comment-create">レビューを投稿
           <%= render 'comments/form', comment: @comment, craft_beer_shop: @craft_beer_shop %>
         </td>
       <% end %>
     </tr>
 
+    <tr>
+      <th scope="col">投稿日</th>
+      <td><%= l @craft_beer_shop.created_at %></td>
+      <td></td>
+    </tr>
 
-
-
-
+    <tr>
+      <% if @craft_beer_shop.user_id == current_user.id %>
+        <td><%= link_to "編集", edit_craft_beer_shop_path(@craft_beer_shop.id), class: "btn btn-sm btn-success" %></td>
+        <td><%= link_to "削除", @craft_beer_shop, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger" %></td>
+      <% end %>
+    </tr>
   </table>
-
-  <% if @craft_beer_shop.user_id == current_user.id %>
-      <a><%= link_to "編集", edit_craft_beer_shop_path(@craft_beer_shop.id), class: "btn btn-sm btn-success" %></a>
-      <a><%= link_to "削除", @craft_beer_shop, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger" %></a>
-  <% end %>
 </div>

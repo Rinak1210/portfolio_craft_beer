@@ -38,7 +38,7 @@ class CraftBeerShopsController < ApplicationController
     @craft_beer_shop = CraftBeerShop.find(params[:id])
     if @craft_beer_shop.update(craft_beer_shop_params)
       flash[:notice] = "更新しました"
-      redirect_to craft_beer_shops_path
+      redirect_to craft_beer_shops_path(@craft_beer_shop)
     else
       flash[:notice] = @craft_beer_shop.errors.full_messages
       render action: :edit

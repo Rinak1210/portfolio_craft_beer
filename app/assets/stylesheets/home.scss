@@ -1,1 +1,25 @@
+.head-title {
+  margin-bottom: 100px;
+  font-family: "Arial", "メイリオ";
+}
 
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  .starter {
+    margin-right: 40px; // Optional: add some space between starters
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    img {
+      width: 100px; // Set the width of the image as needed
+    }
+
+    div {
+      margin-top: 10px; // Optional: add some space between the image and text
+    }
+  }
+}

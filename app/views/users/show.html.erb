@@ -1,6 +1,6 @@
 <h1>ユーザー登録情報</h1>
 <div class="contents">
-  <p>アイコン画像：</p>
+  <p>プロフィール画像：</p>
     <% if current_user.image.attached? %>
       <%= image_tag current_user.image, size: '70x60' %>
     <% else %>
@@ -8,12 +8,12 @@
     <% end %>
   <p>ユーザーネーム：<%= @user.name %></p>
   <p>メールアドレス：<%= @user.email %></p>
-  <p><%= link_to '編集', edit_user_path %></p>
-  <p><%= link_to 'ログアウト', logout_path, method: :delete, data: { confirm: 'ログアウトしますか？' } %></p>
-  <p><%= link_to '退会', unsubscribe_path(@user), method: :delete, data: { confirm: '本当に退会しますか？' } %></p>
+  <p><%= link_to 'プロフィール編集', edit_user_path, class: "btn btn-light" %></p>
+  <p><%= link_to 'ログアウト', logout_path, method: :delete, class: "btn btn-light", data: { confirm: 'ログアウトしますか？' } %></p>
+  <p><%= link_to '退会', unsubscribe_path(@user), method: :delete, class: "btn btn-light", data: { confirm: '本当に退会しますか？' } %></p>
   <div class="my-posts">
   <h3>〜<%= current_user.name %>さんの投稿一覧〜</h3>  <%= link_to "新規投稿する", new_craft_beer_shop_path, class: 'btn btn-primary' %>
-  <table class ="table table-striped">
+  <table class ="table table-light table-striped">
       <thead>
         <tr>
           <th>投稿ID</th>
