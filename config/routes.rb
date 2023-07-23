@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'home#index'
+
   resources :craft_beer_shops do
     resource :favorites, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]

@@ -2,6 +2,25 @@
 @import "users.scss";
 @import "font-awesome";
 
+.background-image {
+  /* 画面いっぱいに引き伸ばす設定 */
+  background-size: cover;
+  /* 画像の位置を中央に設定 */
+  background-position: center;
+  /* 画像を背景に設定 */
+  background-image: image-url('wallpaper.jpg');
+  /* ビューのサイズに合わせる */
+  width: 100%;
+  height: 100vh; /* 画面の高さいっぱいに設定 */
+  z-index: 0;
+}
+
+#content {
+  /* 背景画像より上に表示 */
+  position: relative;
+  z-index: 1;
+}
+
 h1 {
   text-align: center;
   margin-top: 50px;
