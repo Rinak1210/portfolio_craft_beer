@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in(@user)
-      redirect_to profile_path(@user)
+      redirect_to craft_beer_shops_path, notice: "ユーザー登録に成功しました"
     else
       render 'new'
     end

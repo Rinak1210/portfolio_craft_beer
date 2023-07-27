@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
         # ユーザー登録を行った際、同時にログイン処理も行うようにしています。
         log_in(user)
         flash[:notice] = "ログインしました"
-        redirect_to profile_path(user)
+        redirect_to craft_beer_shops_path
       else
         flash.now[:danger] = 'ログインに失敗しました'
         render 'new'
