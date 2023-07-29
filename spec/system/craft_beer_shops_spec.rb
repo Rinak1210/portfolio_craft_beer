@@ -14,40 +14,4 @@ require 'rails_helper'
 #       expect(response).to have_http_status(:success)
 #     end
 #   end
-
-#   describe "GET /new" do
-#     it "returns http success" do
-#       get "/craft_beer_shops/new"
-#       expect(response).to have_http_status(:success)
-#     end
-#   end
-
-#   describe "GET /create" do
-#     it "returns http success" do
-#       get "/craft_beer_shops/create"
-#       expect(response).to have_http_status(:success)
-#     end
-#   end
-
-#   describe "GET /edit" do
-#     it "returns http success" do
-#       get "/craft_beer_shops/edit"
-#       expect(response).to have_http_status(:success)
-#     end
-#   end
-
-#   describe "GET /update" do
-#     it "returns http success" do
-#       get "/craft_beer_shops/update"
-#       expect(response).to have_http_status(:success)
-#     end
-#   end
-
-#   describe "GET /destroy" do
-#     it "returns http success" do
-#       get "/craft_beer_shops/destroy"
-#       expect(response).to have_http_status(:success)
-#     end
-#   end
-
 # end

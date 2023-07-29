@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :system do
-  let(:user) { create(:user) }
+  let!(:user) { FactoryBot.create(:user) }
+  # let(:user) { create(:user) }
 
   describe "ユーザー新規登録" do
     context "フォームに入力する値が正常" do
