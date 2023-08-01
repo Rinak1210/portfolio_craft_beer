@@ -15,7 +15,6 @@ class CraftBeerShopsController < ApplicationController
       if @craft_beer_shop.save
         redirect_to craft_beer_shops_path, notice: "投稿に成功しました"
       else
-        flash[:notice] = @craft_beer_shop.errors.full_messages
         render action: :new
       end
     else
@@ -40,7 +39,6 @@ class CraftBeerShopsController < ApplicationController
       flash[:notice] = "更新しました"
       redirect_to craft_beer_shops_path(@craft_beer_shop)
     else
-      flash[:notice] = @craft_beer_shop.errors.full_messages
       render action: :edit
     end
   end

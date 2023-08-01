@@ -1,30 +1,31 @@
 <h1>ユーザー新規登録</h1>
+
 <div class="form">
   <%= form_with model: @user, url: signup_path, local: true do |form| %>
     <%= render 'layouts/error_messages', model: form.object %>
     <div class="mb-3">
-      <%= form.label :image, 'プロフィール画像' %>
-      <%= form.file_field :image %>
+      <%= form.label :image, 'プロフィール画像', class: "form-label" %>
+      <%= form.file_field :image, class: "form-control" %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :name, 'ユーザーネーム' %>
-      <%= form.text_field :name %>
+      <%= form.label :name, 'ユーザーネーム', class: "form-label" %>
+      <%= form.text_field :name, class: "form-control" %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :email, 'メールアドレス' %>
-      <%= form.email_field :email %>
+      <%= form.label :email, 'メールアドレス', class: "form-label" %>
+      <%= form.email_field :email, class: "form-control" %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :password, 'パスワード' %>
-      <%= form.password_field :password %>
+      <%= form.label :password, 'パスワード', class: "form-label" %>
+      <%= form.password_field :password, class: "form-control" %>
     </div>
 
     <div class="mb-3">
-      <%= form.label :password_confirmation, 'パスワード(確認)' %>
-      <%= form.password_field :password_confirmation %>
+      <%= form.label :password_confirmation, 'パスワード(確認)', class: "form-label" %>
+      <%= form.password_field :password_confirmation, class: "form-control" %>
     </div>
 
     <div class="mb-3">

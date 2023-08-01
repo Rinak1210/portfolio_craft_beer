@@ -29,7 +29,6 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to profile_path(@user), notice: "ユーザー情報を更新しました"
     else
-      flash[:notice] = @user.errors.full_messages
       render 'edit'
     end
   end
