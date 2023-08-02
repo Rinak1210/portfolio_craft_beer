@@ -1,0 +1,2 @@
+module CraftBeerShopsHelper
+end

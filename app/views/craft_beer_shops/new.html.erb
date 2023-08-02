@@ -1,0 +1,32 @@
+<h1>新規投稿</h1>
+
+<div class="form">
+  <%= form_with model: @craft_beer_shop,local: true do |form| %>
+  <%= render 'layouts/error_messages', model: form.object %>
+
+  <div class="mb-3">
+    <%= form.label :店名, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :住所, class: "form-label" %>
+    <%= form.text_field :address, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :おすすめポイント, class: "form-label" %>
+    <%= form.text_area :description, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :images, class: "form-label" %>
+    <%= form.file_field :images, direct_upload: true, multiple: true, class: "form-label" %>
+  </div>
+
+  <div>
+    <%= form.submit "お気に入りのクラフトビールスポットを投稿する", class: "btn btn-primary" %>
+  </div>
+  <% end %>
+</div>
+<%= link_to "みんなのお気に入りのクラフトビールスポット一覧へ戻る", craft_beer_shops_path %>

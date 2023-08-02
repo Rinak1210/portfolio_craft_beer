@@ -6,11 +6,41 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'false' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'false' %>
+
   </head>
 
   <body>
-    <%= yield %>
+    <div class="background-image">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">HOME</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <!-- もし既にサインインしている場合-->
+              <% if current_user %>
+                <a class="nav-link" href="/craft_beer_shops">INDEX</a>
+                <a class="nav-link" href="/users/<%= current_user.id %>">MY PAGE</a>
+                <%= link_to "LOGOUT", logout_path, method: :delete, data: { confirm: 'ログアウトしますか？' }, class: 'nav-link' %>
+              <!-- まだサインインしていない場合-->
+              <% else %>
+                <a class="nav-link" href="/login">LOGIN</a>
+                <a class="nav-link" href="/signup">SIGN UP</a>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div id="flash-message">
+        <%= render 'layouts/flash' %>
+      </div>
+      <div id="content">
+        <%= yield %>
+      </div>
+    </div>
   </body>
 </html>

@@ -1,0 +1,21 @@
+<h1>ログイン</h1>
+
+<div class="form">
+  <%= form_with model: @user, local: true do |form| %>
+    <%= flash[:danger] %>
+
+    <div class="mb-3">
+      <%= form.label :email, 'メールアドレス', class: "form-label" %>
+      <%= form.email_field :email, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :password, 'パスワード', class: "form-label" %>
+      <%= form.password_field :password, class: "form-control" %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.submit 'ログイン' %>
+    </div>
+</div>
+<% end %>

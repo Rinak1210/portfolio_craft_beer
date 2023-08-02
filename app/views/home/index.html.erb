@@ -1,0 +1,23 @@
+<h1 class="head-title">Let's show your favorite craft beer spots!</h1>
+
+<div class="container">
+  <p>あなたがオススメするクラフトビールスポットを紹介しよう♪</p>
+
+  <p>クラフトビールを愛するユーザー同士がおすすめのお店を共有し合うことができます。</p>
+
+  <p>きっと、今夜カンパイするお店が見つかるはずです。</p>
+<div>
+
+<div class="wrapper">
+  <% unless current_user %>
+  <div class="starter">
+    <%= link_to(image_tag('beer-icon1.png'), login_path) %>
+    <div>ログイン</div>
+  </div>
+
+  <div class="starter">
+    <%= link_to(image_tag('beer-icon2.png'), signup_path) %>
+    <div>新規登録</div>
+  </div>
+  <% end %>
+</div>
