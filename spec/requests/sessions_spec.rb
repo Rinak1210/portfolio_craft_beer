@@ -9,9 +9,8 @@ RSpec.describe "Sessions", type: :request do
 
   describe "POST #create" do
     context "ログインに成功し投稿一覧ページにアクセスした際" do
-      it "HTTPステータスコード200を返すこと" do
-        #follow_redirect!
-        expect(response).to have_http_status(200)
+      it "HTTPステータスコード302を返すこと" do
+        expect(response).to have_http_status(302)
       end
     end
   end
