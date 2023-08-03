@@ -68,3 +68,6 @@ gem 'gmaps4rails'
 gem 'geocoder'
 gem 'dotenv-rails'
 gem "aws-sdk-s3", require: false
+gem 'net-imap'
+gem 'net-pop'
+gem 'net-smtp'
