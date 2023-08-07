@@ -5,7 +5,7 @@ class GuestSessionsController < ApplicationController
       user.name = "ゲストユーザー"
     end
       session[:user_id] = user.id
-      flash[:success] = "ゲストユーザーとしてログインしました"
+      flash[:notice] = "ゲストユーザーとしてログインしました"
       redirect_to craft_beer_shops_path
   end
 end
