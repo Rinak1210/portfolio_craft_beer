@@ -37,8 +37,10 @@
 <div id="map"></div>
 
 <div class="contents">
-  <p>現在のユーザー：<%= current_user.name %></p>
-  <p><%= link_to "新規投稿する", new_craft_beer_shop_path, class: 'btn btn-primary' %></p>
+  <% if current_user %>
+    <p>現在のユーザー：<%= current_user.name %></p>
+    <p><%= link_to "新規投稿する", new_craft_beer_shop_path, class: 'btn btn-primary' %></p>
+  <% end %>
   <table class="table table-light table-striped">
     <thead>
       <tr>
@@ -47,9 +49,11 @@
         <th scope="col">クラフトビール 店名</th>
         <th scope="col">おすすめポイント</th>
         <th scope="col">住所</th>
-        <th scope="col">いいね</th>
-        <th scope="col">編集</th>
-        <th scope="col">削除</th>
+        <% if current_user %>
+          <th scope="col">いいね</th>
+          <th scope="col">編集</th>
+          <th scope="col">削除</th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
@@ -65,15 +69,17 @@
           <td><%=link_to "#{craft_beer_shop.name}", [craft_beer_shop] %></td>
           <td><%= craft_beer_shop.description.truncate(15) %></td>
           <td><%= craft_beer_shop.address.truncate(15)  %></td>
-          <td id="favorite_<%= craft_beer_shop.id %>">
-            <%= render "favorites/favorite", craft_beer_shop: craft_beer_shop %>
-          </td>
-          <% if craft_beer_shop.user_id == current_user.id %>
-            <td><%= link_to "編集", edit_craft_beer_shop_path(craft_beer_shop.id), class: "btn btn-sm btn-success" %></td>
-            <td><%= link_to "削除", craft_beer_shop, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger" %></td>
-          <% else %>
-          <td></td>
-          <td></td>
+          <% if current_user %>
+            <td id="favorite_<%= craft_beer_shop.id %>">
+              <%= render "favorites/favorite", craft_beer_shop: craft_beer_shop %>
+            </td>
+            <% if craft_beer_shop.user_id == current_user.id  %>
+              <td><%= link_to "編集", edit_craft_beer_shop_path(craft_beer_shop.id), class: "btn btn-sm btn-success" %></td>
+              <td><%= link_to "削除", craft_beer_shop, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger" %></td>
+            <% else %>
+            <td></td>
+            <td></td>
+            <% end %>
           <% end %>
         </tr>
       <% end %>

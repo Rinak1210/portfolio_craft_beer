@@ -18,4 +18,8 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+
+    # ゲストログイン
+  post 'guest_login', to: "guest_sessions#create"
+
 end
