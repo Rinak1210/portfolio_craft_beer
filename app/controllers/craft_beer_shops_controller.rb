@@ -3,7 +3,7 @@ class CraftBeerShopsController < ApplicationController
   skip_before_action :login_required, only: [:index]
 
   def index
-    @craft_beer_shops =  CraftBeerShop.all#.includes(:user)
+    @craft_beer_shops =  CraftBeerShop.all.page(params[:page]).per(4).order('created_at DESC')
   end
 
   def new

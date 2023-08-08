@@ -1,34 +1,34 @@
-<h1 class="head-title">Let's show your favorite craft beer spots!</h1>
+<h1 class="head-title">Find Craft Beer</h1>
 
 <div class="container">
-  <p>あなたがオススメするクラフトビールスポットを紹介しよう♪</p>
+    <h3>あなたがオススメするクラフトビールスポットを紹介しよう♪
+    <br>
+    <br>
+    クラフトビールを愛するユーザー同士がおすすめのお店を共有し合うことができます。
+    <br>
+    <br>
+    きっと、今夜カンパイするお店が見つかります。</h3>
+    <br>
+    <br>
+  <div>
 
-  <p>クラフトビールを愛するユーザー同士がおすすめのお店を共有し合うことができます。</p>
+  <% unless current_user %>
+    <div class="wrapper">
+      <div class="starter">
+        <%= link_to(image_tag('beer-icon1.png'), login_path) %>
+        <span>ログイン</span>
+      </div>
 
-  <p>きっと、今夜カンパイするお店が見つかるはずです。</p>
-  <br>
-  <br>
-
-<div>
-
-<% unless current_user %>
-  <div class="wrapper">
-    <div class="starter">
-      <%= link_to(image_tag('beer-icon1.png'), login_path) %>
-      <div>ログイン</div>
+      <div class="starter">
+        <%= link_to(image_tag('beer-icon2.png'), signup_path) %>
+        <span>新規登録</span>
+      </div>
     </div>
 
-    <div class="starter">
-      <%= link_to(image_tag('beer-icon2.png'), signup_path) %>
-      <div>新規登録</div>
+    <br>
+    <div class="guest">
+      <%= link_to(image_tag('beer-icon3.png'), guest_login_path, method: :post) %>
+      <span>ゲストログイン</span>
     </div>
-  </div>
-
-  <br>
-  <div class="guest">
-    <p>↓ログインせずに、気軽にみんなの投稿を見てみる↓</p>
-    <%= link_to(image_tag('beer-icon3.png'), guest_login_path, method: :post) %>
-    <div>ゲストログイン</div>
-  </div>
-<% end %>
+  <% end %>
 </div>

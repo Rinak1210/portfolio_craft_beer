@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
-    @craft_beer_shops = @user.craft_beer_shops
+    @craft_beer_shops = @user.craft_beer_shops.all.page(params[:page]).per(2).order('created_at DESC')
   end
 
   def edit

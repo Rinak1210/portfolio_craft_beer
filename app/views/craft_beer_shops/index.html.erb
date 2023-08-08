@@ -1,88 +1,52 @@
 <h1>みんなの投稿一覧</h1>
 
-<script>
-  let map
+<% if current_user %>
+  <p>現在のユーザー：<%= current_user.name %></p>
+  <p><%= link_to "新規投稿する", new_craft_beer_shop_path, class: 'btn btn-primary' %></p>
+<% end %>
 
-  function initMap(){
-    geocoder = new google.maps.Geocoder()
-
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 35.68123620000001, lng:139.7671248},
-        zoom: 12,
-    });
-
-
-    <% @craft_beer_shops.each do |shop| %>
-        (function(){
-        var contentString = "住所：<%= shop.address %>";
-
-        var marker = new google.maps.Marker({
-            position:{lat: <%= shop.latitude %>, lng: <%= shop.longitude %>},
-            map: map,
-            title: contentString
-        });
-
-        })();
-    <% end %>
-  }
-</script>
-
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" type="text/javascript"></script>
-
-<style type="text/css">
-  #map { height: 300px;
-        width: 70%;
-        margin: 0 auto;}
-</style>
-<div id="map"></div>
-
-<div class="contents">
-  <% if current_user %>
-    <p>現在のユーザー：<%= current_user.name %></p>
-    <p><%= link_to "新規投稿する", new_craft_beer_shop_path, class: 'btn btn-primary' %></p>
-  <% end %>
-  <table class="table table-light table-striped">
-    <thead>
+<table class="table table-light table-striped">
+  <thead>
+    <tr>
+      <th scope="col">投稿ID</th>
+      <th scope="col">写真</th>
+      <th scope="col">クラフトビール 店名</th>
+      <th scope="col">おすすめポイント</th>
+      <th scope="col">住所</th>
+      <% if current_user %>
+        <th scope="col">いいね</th>
+        <th scope="col">編集</th>
+        <th scope="col">削除</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @craft_beer_shops.each do |craft_beer_shop| %>
       <tr>
-        <th scope="col">投稿ID</th>
-        <th scope="col">写真</th>
-        <th scope="col">クラフトビール 店名</th>
-        <th scope="col">おすすめポイント</th>
-        <th scope="col">住所</th>
+        <th scope="row"><%= craft_beer_shop.id %></th>
+        <% if craft_beer_shop.images.attached? %>
+          <% image = craft_beer_shop.images.first %>
+          <td><%= image_tag image, size: '70x90' %></td>
+        <% else %>
+          <td><%= image_tag "no_image.jpg", size: '70x90', alt: "No Image" %></td>
+        <% end %>
+        <td><%=link_to "#{craft_beer_shop.name}", [craft_beer_shop] %></td>
+        <td><%= craft_beer_shop.description.truncate(15) %></td>
+        <td><%= craft_beer_shop.address.truncate(15)  %></td>
         <% if current_user %>
-          <th scope="col">いいね</th>
-          <th scope="col">編集</th>
-          <th scope="col">削除</th>
+          <td id="favorite_<%= craft_beer_shop.id %>">
+            <%= render "favorites/favorite", craft_beer_shop: craft_beer_shop %>
+          </td>
+          <% if craft_beer_shop.user_id == current_user.id  %>
+            <td><%= link_to "編集", edit_craft_beer_shop_path(craft_beer_shop.id), class: "btn btn-sm btn-success" %></td>
+            <td><%= link_to "削除", craft_beer_shop, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger" %></td>
+          <% else %>
+          <td></td>
+          <td></td>
+          <% end %>
         <% end %>
       </tr>
-    </thead>
-    <tbody>
-      <% @craft_beer_shops.each do |craft_beer_shop| %>
-        <tr>
-          <th scope="row"><%= craft_beer_shop.id %></th>
-          <% if craft_beer_shop.images.attached? %>
-            <% image = craft_beer_shop.images.first %>
-            <td><%= image_tag image, size: '70x90' %></td>
-          <% else %>
-            <td><%= image_tag "no_image.jpg", size: '70x90', alt: "No Image" %></td>
-          <% end %>
-          <td><%=link_to "#{craft_beer_shop.name}", [craft_beer_shop] %></td>
-          <td><%= craft_beer_shop.description.truncate(15) %></td>
-          <td><%= craft_beer_shop.address.truncate(15)  %></td>
-          <% if current_user %>
-            <td id="favorite_<%= craft_beer_shop.id %>">
-              <%= render "favorites/favorite", craft_beer_shop: craft_beer_shop %>
-            </td>
-            <% if craft_beer_shop.user_id == current_user.id  %>
-              <td><%= link_to "編集", edit_craft_beer_shop_path(craft_beer_shop.id), class: "btn btn-sm btn-success" %></td>
-              <td><%= link_to "削除", craft_beer_shop, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger" %></td>
-            <% else %>
-            <td></td>
-            <td></td>
-            <% end %>
-          <% end %>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @craft_beer_shops %>
