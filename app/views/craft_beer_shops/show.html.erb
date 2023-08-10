@@ -1,4 +1,4 @@
-<h1>投稿詳細</h1>
+<h4>投稿詳細</h4>
 
 <script type="text/javascript">
   function initMap() {
@@ -38,20 +38,16 @@
       <td><%= @craft_beer_shop.name %></td>
       <td></td>
     </tr>
-
     <tr>
       <th scope="col">住所</th>
       <td><%= @craft_beer_shop.address %></td>
       <td></td>
     </tr>
-
     <tr>
       <th scope="col">おすすめポイント</th>
         <td><%= @craft_beer_shop.description %></td>
         <td></td>
     </tr>
-
-
   <% if @craft_beer_shop.images.attached? %>
     <tr>
       <th scope="col">写真</th>
@@ -69,7 +65,6 @@
       <% end %>
     </tr>
   <% end %>
-
     <tr>
       <th scope="col">いいね</th>
       <td id="favorite_<%= @craft_beer_shop.id %>"><!--idにして特定してJSを処理-->
@@ -77,7 +72,6 @@
       </td>
       <td></td>
     </tr>
-
     <tr>
       <th scope="col">コメント一覧</th>
       <td id="comments_area"><!--idにして特定してJSを処理-->
@@ -91,13 +85,11 @@
         <% end %>
       <% end %>
     </tr>
-
     <tr>
       <th scope="col">投稿日</th>
       <td><%= l @craft_beer_shop.created_at %></td>
       <td></td>
     </tr>
-
     <tr>
       <% if current_user %>
         <% if @craft_beer_shop.user_id == current_user.id %>
