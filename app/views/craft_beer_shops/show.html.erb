@@ -86,8 +86,10 @@
     </tr>
     <tr>
       <th scope="col">コメント一覧</th>
-      <td id="comments_area"><!--idにして特定してJSを処理-->
-        <%= render 'comments/index', comments: @comments, craft_beer_shop: @craft_beer_shop %>
+      <td id="comments_area" class="comments-container"><!--idにして特定してJSを処理-->
+        <div class="comments-scrollable">
+          <%= render 'comments/index', comments: @comments, craft_beer_shop: @craft_beer_shop %>
+        </div>
       </td>
       <% if current_user %>
         <% if @craft_beer_shop.user_id != current_user.id %>

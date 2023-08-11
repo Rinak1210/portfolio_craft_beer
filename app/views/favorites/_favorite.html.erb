@@ -3,7 +3,6 @@
     <!-- いいね 解除 ボタン -->
     <%= link_to craft_beer_shop_favorites_path(craft_beer_shop), method: :delete, remote: true do %>
       <div><i class="fa-solid fa-heart" style="color: #e6200a;"></i></div>
-      <div class="text">いいね！</div>
       <!-- いいね数の表示 -->
       <div class="count"><%= craft_beer_shop.favorites.count %></div>
     <% end %>
@@ -11,7 +10,6 @@
     <!-- いいねボタン❤ -->
     <%= link_to craft_beer_shop_favorites_path(craft_beer_shop), method: :post, remote: true do %>
       <div><i class="fa-regular fa-heart"></i></div>
-      <div class="text">いいね！</div>
       <!-- いいね数の表示 -->
       <div class="count"><%= craft_beer_shop.favorites.count %></div>
     <% end %>

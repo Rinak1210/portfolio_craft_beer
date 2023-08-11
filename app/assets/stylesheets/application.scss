@@ -59,3 +59,12 @@ footer {
   text-align: center;
   margin-top: auto;
 }
+
+.comments-container {
+  position: relative;
+}
+
+.comments-scrollable {
+  max-height: 120px; /* 適切な高さに調整 */
+  overflow-y: auto;
+}
