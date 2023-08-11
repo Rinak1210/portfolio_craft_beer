@@ -2,16 +2,12 @@
   <% if craft_beer_shop.already_favorited?(current_user) %>
     <!-- いいね 解除 ボタン -->
     <%= link_to craft_beer_shop_favorites_path(craft_beer_shop), method: :delete, remote: true do %>
-      <div><i class="fa-solid fa-heart" style="color: #e6200a;"></i></div>
-      <!-- いいね数の表示 -->
-      <div class="count"><%= craft_beer_shop.favorites.count %></div>
+      <div><i class="fa-solid fa-heart" style="color: #e6200a;"></i> <%= craft_beer_shop.favorites.count %></div>
     <% end %>
   <% else %>
     <!-- いいねボタン❤ -->
     <%= link_to craft_beer_shop_favorites_path(craft_beer_shop), method: :post, remote: true do %>
-      <div><i class="fa-regular fa-heart"></i></div>
-      <!-- いいね数の表示 -->
-      <div class="count"><%= craft_beer_shop.favorites.count %></div>
+      <div><i class="fa-regular fa-heart"></i> <%= craft_beer_shop.favorites.count %></div>
     <% end %>
   <% end %>
 <% end %>
