@@ -5,8 +5,13 @@
         <tr>
           <td>
             <%= link_to profile_path(comment.user) do %>
-              <%= image_tag comment.user.image, size: "50x50" %><br>
-              <%= comment.user.name %>
+              <% if comment.user.image.attached? %>
+                <%= image_tag comment.user.image, size: "50x50" %>
+                <%= comment.user.name %>
+              <% else %>
+                <%= image_tag 'default_avatar.jpg', alt: "No Image" %>
+                <%= comment.user.name %>
+              <% end %>
             <% end %>
           </td>
           <td><%= comment.content %></td>

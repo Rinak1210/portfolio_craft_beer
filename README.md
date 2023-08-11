@@ -14,8 +14,6 @@ Docker上でRails 6を使用して制作されています。
 
 投稿詳細ページではGoogle Maps APIも活用されています。
 
-GitHub リポジトリ: [https://github.com/Rinak1210/portfolio_craft_beer](https://github.com/Rinak1210/portfolio_craft_beer)
-
 ## 環境
 
 - Ruby: 3.1.2
@@ -39,6 +37,8 @@ GitHub リポジトリ: [https://github.com/Rinak1210/portfolio_craft_beer](http
 
 ## ER図
 
+- ER図は、GemのRails ERDを使用して自動的に生成されました。
+
 ![ER図](https://github.com/Rinak1210/portfolio_craft_beer/assets/123565603/6da5e727-ef37-4b42-9409-30dea4432521)
 
 ## 自動テスト
@@ -57,8 +57,3 @@ GitHub リポジトリ: [https://github.com/Rinak1210/portfolio_craft_beer](http
 
 - 作者: 河原 梨奈 Rina Kawahara
 - GitHub: [https://github.com/Rinak1210](https://github.com/Rinak1210)
-
-## ライセンス
-
-このプロジェクトは [MIT License](LICENSE) のもとでライセンスされています。
-
