@@ -45,6 +45,10 @@ GitHub リポジトリ: [https://github.com/Rinak1210/portfolio_craft_beer](http
 
 このアプリにはRSpecを使用した自動テストが含まれています。
 
+- System Spec
+- Model Spec
+- Request spec
+
 ## デプロイ
 
 アプリはCircleCIとHerokuを使用した継続的インテグレーションとデプロイが設定されています。`master` ブランチに変更がプッシュされるたびに、CircleCIはテストを実行し、成功した場合は自動的にHerokuにデプロイされます。
