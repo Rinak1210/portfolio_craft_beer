@@ -14,7 +14,7 @@ jobs:
       - setup_remote_docker:
           version: 20.10.14
       - run:
-          name: Start containers and verify it is working
+          name: Start containers and verify it is workingj
           command: |
             set -x
             docker-compose up -d
@@ -36,7 +36,7 @@ jobs:
       - heroku/install
       - run:
           name: Deploy
-          command: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git HEAD:master
+          command: git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git HEAD:develop
       - run:
           name: Run post-deploy tasks
           command: |
@@ -50,6 +50,6 @@ workflows:
       - heroku_deploy:
           requires:
             - rspec
-          filters:
-            branches:
-              only: master
+          # filters:
+          #   branches:
+          #     only: master

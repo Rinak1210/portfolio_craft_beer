@@ -1,4 +1,4 @@
-<h1>投稿詳細</h1>
+<h6>投稿詳細</h6>
 
 <script type="text/javascript">
   function initMap() {
@@ -24,6 +24,8 @@
   }
 </script>
 
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" type="text/javascript"></script>
+
 <style type="text/css">
   #map { height: 200px;
         width: 70%;
@@ -34,54 +36,56 @@
 
   <table class="table table-light table-striped">
     <tr>
+      <th scope="col">投稿者 </th>
+      <% if @craft_beer_shop.user.image.attached? %>
+        <td><%= image_tag @craft_beer_shop.user.image, size: '60x50' %>  <%= @craft_beer_shop.user.name %></td>
+        <td></td>
+      <% else %>
+        <td><%= image_tag 'default_avatar.jpg', alt: "No Image" %>  <%= @craft_beer_shop.user.name %></td>
+        <td></td>
+      <% end %>
+    </tr>
+    <tr>
       <th scope="col">クラフトビール 店名 </th>
       <td><%= @craft_beer_shop.name %></td>
       <td></td>
     </tr>
-
     <tr>
       <th scope="col">住所</th>
       <td><%= @craft_beer_shop.address %></td>
       <td></td>
     </tr>
-
     <tr>
       <th scope="col">おすすめポイント</th>
         <td><%= @craft_beer_shop.description %></td>
         <td></td>
     </tr>
-
-
   <% if @craft_beer_shop.images.attached? %>
     <tr>
       <th scope="col">写真</th>
-      <% @craft_beer_shop.images.each_slice(2) do |image1, image2| %>
-        <td>
-          <div class="row">
-            <div class="col-md-6">
-              <%= image_tag image1, class: 'img-fluid' if image1 %>
-            </div>
-            <div class="col-md-6">
-              <%= image_tag image2, class: 'img-fluid' if image2 %>
-            </div>
-          </div>
-        </td>
-      <% end %>
+      <td colspan="2">
+        <div class="images-container text-left">
+          <% @craft_beer_shop.images.each do |image| %>
+            <%= link_to image_tag(image, class: 'img-thumbnail'), image, data: { lightbox: 'images' } %>
+          <% end %>
+        </div>
+      </td>
     </tr>
   <% end %>
-
-    <tr>
+    <tr class="icon-favorite">
       <th scope="col">いいね</th>
-      <td id="favorite_<%= @craft_beer_shop.id %>"><!--idにして特定してJSを処理-->
-        <%= render 'favorites/favorite', craft_beer_shop: @craft_beer_shop %>
+      <td colspan="2" class="text-left"><!-- 左寄せ用のクラスを追加 -->
+        <div id="favorite_<%= @craft_beer_shop.id %>" class="icon-container"><!-- idにして特定してJSを処理 -->
+          <%= render 'favorites/favorite', craft_beer_shop: @craft_beer_shop %>
+        </div>
       </td>
-      <td></td>
     </tr>
-
     <tr>
       <th scope="col">コメント一覧</th>
-      <td id="comments_area"><!--idにして特定してJSを処理-->
-        <%= render 'comments/index', comments: @comments, craft_beer_shop: @craft_beer_shop %>
+      <td id="comments_area" class="comments-container"><!--idにして特定してJSを処理-->
+        <div class="comments-scrollable">
+          <%= render 'comments/index', comments: @comments, craft_beer_shop: @craft_beer_shop %>
+        <div>
       </td>
       <% if current_user %>
         <% if @craft_beer_shop.user_id != current_user.id %>
@@ -91,13 +95,11 @@
         <% end %>
       <% end %>
     </tr>
-
     <tr>
       <th scope="col">投稿日</th>
       <td><%= l @craft_beer_shop.created_at %></td>
       <td></td>
     </tr>
-
     <tr>
       <% if current_user %>
         <% if @craft_beer_shop.user_id == current_user.id %>
