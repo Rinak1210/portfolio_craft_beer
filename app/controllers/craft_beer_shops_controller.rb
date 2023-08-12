@@ -2,7 +2,7 @@ class CraftBeerShopsController < ApplicationController
   before_action :login_required, only: [:index, :new, :create, :edit, :update, :destroy]
 
   def index
-    @craft_beer_shops =  CraftBeerShop.all.page(params[:page]).per(4).order('created_at DESC')
+    @craft_beer_shops =  CraftBeerShop.all.page(params[:page]).per(3).order('created_at DESC')
   end
 
   def new

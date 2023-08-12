@@ -1,112 +1,107 @@
-<h6>投稿詳細</h6>
-
-<script type="text/javascript">
-  function initMap() {
-    var test = {lat: <%= @craft_beer_shop.latitude %>, lng: <%= @craft_beer_shop.longitude %>};
-    var map = new google.maps.Map(document.getElementById('map'), {
-              zoom: 15,
-              center: test
-              });
-    var transitLayer = new google.maps.TransitLayer();
-    transitLayer.setMap(map);
-    var contentString = '住所：<%= @craft_beer_shop.address %>';
-    var infowindow = new google.maps.InfoWindow({
-      content: contentString
-    });
-    var marker = new google.maps.Marker({
-                  position:test,
-                  map: map,
-                  title: contentString
+<table class="table table-light table-striped">
+  <script type="text/javascript">
+    function initMap() {
+      var test = {lat: <%= @craft_beer_shop.latitude %>, lng: <%= @craft_beer_shop.longitude %>};
+      var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: test
                 });
-    marker.addListener('click', function() {
-      infowindow.open(map, marker);
-    });
-  }
-</script>
+      var transitLayer = new google.maps.TransitLayer();
+      transitLayer.setMap(map);
+      var contentString = '住所：<%= @craft_beer_shop.address %>';
+      var infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+      var marker = new google.maps.Marker({
+                    position:test,
+                    map: map,
+                    title: contentString
+                  });
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+      });
+    }
+  </script>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" type="text/javascript"></script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" type="text/javascript"></script>
 
-<style type="text/css">
-  #map { height: 200px;
-        width: 70%;
-        margin: 0 auto;
-        margin-bottom: 20px;}
-</style>
-<div id="map"></div>
-
-  <table class="table table-light table-striped">
-    <tr>
-      <th scope="col">投稿者 </th>
-      <% if @craft_beer_shop.user.image.attached? %>
-        <td><%= image_tag @craft_beer_shop.user.image, size: '60x50' %>  <%= @craft_beer_shop.user.name %></td>
-        <td></td>
-      <% else %>
-        <td><%= image_tag 'default_avatar.jpg', alt: "No Image" %>  <%= @craft_beer_shop.user.name %></td>
-        <td></td>
-      <% end %>
-    </tr>
-    <tr>
-      <th scope="col">クラフトビール 店名 </th>
-      <td><%= @craft_beer_shop.name %></td>
+  <style type="text/css">
+    #map { height: 200px;
+          width: 70%;
+          margin: 10px auto 0;}
+  </style>
+  <div id="map"></div>
+  <tr>
+    <th scope="col">投稿者 </th>
+    <% if @craft_beer_shop.user.image.attached? %>
+      <td><%= image_tag @craft_beer_shop.user.image, size: '40x30' %>  <%= @craft_beer_shop.user.name %></td>
       <td></td>
-    </tr>
-    <tr>
-      <th scope="col">住所</th>
-      <td><%= @craft_beer_shop.address %></td>
+    <% else %>
+      <td><%= image_tag 'default_avatar.jpg', alt: "No Image", size: '40x30' %>  <%= @craft_beer_shop.user.name %></td>
       <td></td>
-    </tr>
-    <tr>
-      <th scope="col">おすすめポイント</th>
-        <td><%= @craft_beer_shop.description %></td>
-        <td></td>
-    </tr>
-  <% if @craft_beer_shop.images.attached? %>
-    <tr>
-      <th scope="col">写真</th>
-      <td colspan="2">
-        <div class="images-container text-left">
-          <% @craft_beer_shop.images.each do |image| %>
-            <%= link_to image_tag(image, class: 'img-thumbnail'), image, data: { lightbox: 'images' } %>
-          <% end %>
-        </div>
-      </td>
-    </tr>
-  <% end %>
-    <tr class="icon-favorite">
-      <th scope="col">いいね</th>
-      <td colspan="2" class="text-left"><!-- 左寄せ用のクラスを追加 -->
-        <div id="favorite_<%= @craft_beer_shop.id %>" class="icon-container"><!-- idにして特定してJSを処理 -->
-          <%= render 'favorites/favorite', craft_beer_shop: @craft_beer_shop %>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <th scope="col">コメント一覧</th>
-      <td id="comments_area" class="comments-container"><!--idにして特定してJSを処理-->
-        <div class="comments-scrollable">
-          <%= render 'comments/index', comments: @comments, craft_beer_shop: @craft_beer_shop %>
-        <div>
-      </td>
-      <% if current_user %>
-        <% if @craft_beer_shop.user_id != current_user.id %>
-          <td class = "comment-create">レビューを投稿
-            <%= render 'comments/form', comment: @comment, craft_beer_shop: @craft_beer_shop %>
-          </td>
+    <% end %>
+  </tr>
+  <tr>
+    <th scope="col">店名 </th>
+    <td><%= @craft_beer_shop.name %></td>
+    <td></td>
+  </tr>
+  <tr>
+    <th scope="col">住所</th>
+    <td><%= @craft_beer_shop.address %></td>
+    <td></td>
+  </tr>
+  <tr>
+    <th scope="col">おすすめポイント</th>
+      <td><%= @craft_beer_shop.description %></td>
+      <td></td>
+  </tr>
+<% if @craft_beer_shop.images.attached? %>
+  <tr>
+    <th scope="col">写真</th>
+    <td colspan="2">
+      <div class="images-container text-left">
+        <% @craft_beer_shop.images.each do |image| %>
+          <%= link_to image_tag(image, class: 'img-thumbnail'), image, data: { lightbox: 'images' } %>
         <% end %>
+      </div>
+    </td>
+  </tr>
+<% end %>
+  <tr class="icon-favorite">
+    <th scope="col">いいね</th>
+    <td colspan="2" class="text-left">
+      <div id="favorite_<%= @craft_beer_shop.id %>" class="icon-container"><!-- idにして特定してJSを処理 -->
+        <%= render 'favorites/favorite', craft_beer_shop: @craft_beer_shop %>
+      </div>
+    </td>
+  </tr>
+  <tr>
+    <th scope="col">コメント一覧</th>
+    <td id="comments_area" class="comments-container"><!--idにして特定してJSを処理-->
+      <div class="comments-scrollable">
+        <%= render 'comments/index', comments: @comments, craft_beer_shop: @craft_beer_shop %>
+      </div>
+    </td>
+    <% if current_user %>
+      <% if @craft_beer_shop.user_id != current_user.id %>
+        <td class = "comment-create">
+          <%= render 'comments/form', comment: @comment, craft_beer_shop: @craft_beer_shop %>
+        </td>
       <% end %>
-    </tr>
-    <tr>
-      <th scope="col">投稿日</th>
-      <td><%= l @craft_beer_shop.created_at %></td>
-      <td></td>
-    </tr>
-    <tr>
-      <% if current_user %>
-        <% if @craft_beer_shop.user_id == current_user.id %>
-          <td><%= link_to "編集", edit_craft_beer_shop_path(@craft_beer_shop.id), class: "btn btn-sm btn-success" %></td>
-          <td><%= link_to "削除", @craft_beer_shop, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger" %></td>
-        <% end %>
+    <% end %>
+  </tr>
+  <tr>
+    <th scope="col">投稿日</th>
+    <td><%= l @craft_beer_shop.created_at %></td>
+    <td></td>
+  </tr>
+  <tr>
+    <% if current_user %>
+      <% if @craft_beer_shop.user_id == current_user.id %>
+        <td><%= link_to "編集", edit_craft_beer_shop_path(@craft_beer_shop.id), class: "btn btn-sm btn-success" %></td>
+        <td><%= link_to "削除", @craft_beer_shop, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger" %></td>
       <% end %>
-    </tr>
-  </table>
-</div>
+    <% end %>
+  </tr>
+</table>

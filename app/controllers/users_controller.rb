@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :login_required, only: [:destroy]
-  before_action :check_user, only: [:destroy, :edit, :update]
 
   def new
     @user = User.new

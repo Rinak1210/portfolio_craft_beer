@@ -1,34 +1,25 @@
-<h1 class="head-title">Find Craft Beer</h1>
-
 <div class="container">
-    <h3>あなたがオススメするクラフトビールスポットを紹介しよう♪
-    <br>
-    <br>
-    クラフトビールを愛するユーザー同士がおすすめのお店を共有し合うことができます。
-    <br>
-    <br>
+  <h1 class="head-title">Find Craft Beer</h1>
+  <h3>あなたがオススメするクラフトビールスポットを紹介しよう♪<br><br>
+    クラフトビールを愛するユーザー同士がおすすめのお店を共有できます。<br><br>
     きっと、今夜カンパイするお店が見つかります。</h3>
-    <br>
-    <br>
-  <div>
+</div>
 
-  <% unless current_user %>
-    <div class="wrapper">
-      <div class="starter">
-        <%= link_to(image_tag('beer-icon1.png'), login_path) %>
-        <span>ログイン</span>
-      </div>
-
-      <div class="starter">
-        <%= link_to(image_tag('beer-icon2.png'), signup_path) %>
-        <span>新規登録</span>
-      </div>
+<% unless current_user %>
+  <section class="wrapper">
+    <div class="starter">
+      <%= link_to(image_tag('beer-icon1.png'), login_path) %>
+      <span>ログイン</span>
     </div>
 
-    <br>
-    <div class="guest">
+    <div class="starter">
+      <%= link_to(image_tag('beer-icon2.png'), signup_path) %>
+      <span>新規登録</span>
+    </div>
+
+    <div class="starter">
       <%= link_to(image_tag('beer-icon3.png'), guest_login_path, method: :post) %>
       <span>ゲストログイン</span>
     </div>
-  <% end %>
-</div>
+  </section>
+<% end %>

@@ -1,8 +1,6 @@
 <h1>みんなの投稿一覧</h1>
-
 <% if current_user %>
-  <p>現在のユーザー：<%= current_user.name %></p>
-  <p><%= link_to "新規投稿する", new_craft_beer_shop_path, class: 'btn btn-primary' %></p>
+  <p>現在のユーザー：<%= current_user.name %><%= link_to "新規投稿する", new_craft_beer_shop_path, class: 'btn btn-primary' %></p>
 <% end %>
 
 <table class="table table-light table-striped">
@@ -14,7 +12,7 @@
       <th scope="col">おすすめポイント</th>
       <th scope="col">住所</th>
       <th scope="col">写真</th>
-        <th scope="col">いいね</th>
+      <th scope="col">いいね</th>
     </tr>
   </thead>
   <tbody>
@@ -37,8 +35,6 @@
         <% end %>
         <td id="favorite_<%= craft_beer_shop.id %>">
           <%= render "favorites/favorite", craft_beer_shop: craft_beer_shop %></td>
-        <td></td>
-        <td></td>
       </tr>
     <% end %>
   </tbody>

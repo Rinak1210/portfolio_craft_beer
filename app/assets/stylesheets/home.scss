@@ -1,35 +1,32 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .head-title {
   font-family: "Arial", "メイリオ";
   font-weight: bold;
-}
-
-.container h3 {
-  text-align: center;
+  margin-top: 0;
 }
 
 .wrapper {
   display: flex;
-  flex-direction: row;
   justify-content: center;
-
-  .starter {
-    margin-right: 40px; // Optional: add some space between starters
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    margin-left: 20px;
-
-    img {
-      width: 110px;
-    }
-  }
+  flex-wrap: wrap;
+  margin-top: -20px;
 }
-.guest {
+
+.starter {
   display: flex;
   flex-direction: column;
+  align-items: center;
   text-align: center;
+}
 
-  .img{
-    margin: 0px;
-  }
+.starter img {
+  width: 80px;
+}
+
+.starter span {
+  margin-top: 5px;
 }
