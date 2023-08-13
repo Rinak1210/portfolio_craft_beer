@@ -11,21 +11,21 @@
       <div class="starter">
         <%= link_to(login_path) do %>
           <%= image_tag('beer-icon1.png', size: '70x70') %>
-          <p>ログイン</p>
+          <p class="link-text">ログイン</p>
         <% end %>
       </div>
 
       <div class="starter">
         <%= link_to(signup_path) do %>
           <%= image_tag('beer-icon2.png', size: '70x70') %>
-          <p>新規登録</p>
+          <p class="link-text">新規登録</p>
         <% end %>
       </div>
 
       <div class="starter">
         <%= link_to(guest_login_path, method: :post) do %>
           <%= image_tag('beer-icon3.png', size: '70x70') %>
-          <p>ゲスト</p>
+          <p class="link-text">ゲスト</p>
         <% end %>
       </div>
     </section>
