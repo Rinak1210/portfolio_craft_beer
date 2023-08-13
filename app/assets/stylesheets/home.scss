@@ -1,6 +1,7 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  text-align: center;
 }
 
 .head-title {
@@ -12,6 +13,7 @@
 .wrapper {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   margin-top: -20px;
 }
