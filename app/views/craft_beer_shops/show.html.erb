@@ -64,7 +64,7 @@
       <td colspan="2">
         <div class="images-container text-left">
           <% @craft_beer_shop.images.each do |image| %>
-            <%= link_to image_tag(image, class: 'img-thumbnail'), image, data: { lightbox: 'images' } %>
+            <%= link_to image_tag(image, class: 'img-thumbnail', size: '40x30'), image, data: { lightbox: 'images' } %>
           <% end %>
         </div>
       </td>
