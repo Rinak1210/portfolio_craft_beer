@@ -1,6 +1,6 @@
 # find-craft-beer アプリ (ポートフォリオ)
 
-![find-craft-beer](https://github.com/Rinak1210/portfolio_craft_beer/assets/123565603/5764b189-afc8-43c6-8e4f-65de9e9c5066)
+![find-craft-beer](https://github.com/Rinak1210/portfolio_craft_beer/assets/123565603/d7390a9c-5086-48f8-b9e9-9de35b075e01)
 
 ## 概要
 
@@ -29,7 +29,8 @@ Docker上でRails 6を使用して制作されています。
 ## 特徴
 
 - ユーザー登録と認証システム
-- 投稿の作成、閲覧、非同期でのコメントといいね
+- 投稿の作成、閲覧
+- 非同期でのコメントといいね
 - Google Maps APIを活用した店舗の位置表示
 - Bootstrapを使用したレスポンシブデザイン
 - ゲストログイン機能

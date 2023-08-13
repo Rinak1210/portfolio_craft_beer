@@ -3,7 +3,6 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_one_attached :image
 
-  # いいね機能のアソシエーション処理
   has_many :favorites, dependent: :destroy
   has_many :favorite_craft_beer_shops, through: :favorites, source: :craft_beer_shop
 

@@ -3,6 +3,6 @@
 </div>
 
 <%= form_with(model: [craft_beer_shop, comment], local: false ) do |f| %>
-    <%= f.text_area :content, rows:'4', placeholder: "コメントを投稿", class: "w-100" %>
-    <%= f.submit "送信", class: "btn btn-outline-dark comment-submit float-right" %>
+  <%= f.text_area :content, rows:'4', placeholder: "コメントを投稿", class: "w-100" %>
+  <%= f.submit "送信", class: "btn btn-outline-dark comment-submit float-right" %>
 <% end %>

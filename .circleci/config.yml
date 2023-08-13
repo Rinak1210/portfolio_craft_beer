@@ -27,8 +27,6 @@ jobs:
           command: docker-compose run web rspec
   heroku_deploy:
     working_directory: ~/find_craft_beer
-    # docker:
-    #   - image: circleci/ruby:3.1.2
     executor: heroku/default
     resource_class: small
     steps:

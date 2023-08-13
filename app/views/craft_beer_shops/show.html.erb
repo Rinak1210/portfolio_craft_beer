@@ -1,4 +1,5 @@
 <table class="table table-light table-striped">
+
   <script type="text/javascript">
     function initMap() {
       var test = {lat: <%= @craft_beer_shop.latitude %>, lng: <%= @craft_beer_shop.longitude %>};
@@ -57,29 +58,29 @@
       <td><%= @craft_beer_shop.description %></td>
       <td></td>
   </tr>
-<% if @craft_beer_shop.images.attached? %>
-  <tr>
-    <th scope="col">写真</th>
-    <td colspan="2">
-      <div class="images-container text-left">
-        <% @craft_beer_shop.images.each do |image| %>
-          <%= link_to image_tag(image, class: 'img-thumbnail'), image, data: { lightbox: 'images' } %>
-        <% end %>
-      </div>
-    </td>
-  </tr>
-<% end %>
+  <% if @craft_beer_shop.images.attached? %>
+    <tr>
+      <th scope="col">写真</th>
+      <td colspan="2">
+        <div class="images-container text-left">
+          <% @craft_beer_shop.images.each do |image| %>
+            <%= link_to image_tag(image, class: 'img-thumbnail'), image, data: { lightbox: 'images' } %>
+          <% end %>
+        </div>
+      </td>
+    </tr>
+  <% end %>
   <tr class="icon-favorite">
     <th scope="col">いいね</th>
     <td colspan="2" class="text-left">
-      <div id="favorite_<%= @craft_beer_shop.id %>" class="icon-container"><!-- idにして特定してJSを処理 -->
+      <div id="favorite_<%= @craft_beer_shop.id %>" class="icon-container">
         <%= render 'favorites/favorite', craft_beer_shop: @craft_beer_shop %>
       </div>
     </td>
   </tr>
   <tr>
     <th scope="col">コメント一覧</th>
-    <td id="comments_area" class="comments-container"><!--idにして特定してJSを処理-->
+    <td id="comments_area" class="comments-container">
       <%= render 'comments/index', comments: @comments, craft_beer_shop: @craft_beer_shop %>
     </td>
     <td class = "comment-create">

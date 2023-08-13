@@ -2,7 +2,6 @@ class CommentsController < ApplicationController
   # Ajax通信用
   def create
     @craft_beer_shop = CraftBeerShop.find(params[:craft_beer_shop_id])
-    # 現在のユーザーに紐づいたコメントを作成
     @comment = current_user.comments.new(comment_params)
     @comment.craft_beer_shop_id = @craft_beer_shop.id
     if @comment.save

@@ -2,7 +2,6 @@
 @import "users.scss";
 @import "craft_beer_shops.scss";
 @import 'home.scss';
-@import 'comments.scss';
 @import "font-awesome";
 
 .background-image {
@@ -73,8 +72,8 @@ footer {
 }
 
 .table {
-  margin-top: 0px;
-  margin-bottom: 0px;
+  width: 80%;
+  margin: 5px auto;
 
   th, td{
   font-size: 11px;

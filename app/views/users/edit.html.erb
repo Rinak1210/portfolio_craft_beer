@@ -2,7 +2,7 @@
 
 <div class="form">
   <%= form_with model: @user, url: update_user_path(@user), local: true, method: "POST" do |form| %>
-  <%= render 'layouts/error_messages', model: form.object %>
+    <%= render 'layouts/error_messages', model: form.object %>
 
     <div class="mb-3">
       <%= form.label :image, 'プロフィール画像', class: "form-label" %>
