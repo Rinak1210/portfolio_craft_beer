@@ -9,18 +9,24 @@
   <% unless current_user %>
     <section class="wrapper">
       <div class="starter">
-        <%= link_to(image_tag('beer-icon1.png'), login_path) %>
-        <span>ログイン</span>
+        <%= link_to(login_path) do %>
+          <%= image_tag('beer-icon1.png', size: '70x70') %>
+          <p>ログイン</p>
+        <% end %>
       </div>
 
       <div class="starter">
-        <%= link_to(image_tag('beer-icon2.png'), signup_path) %>
-        <span>新規登録</span>
+        <%= link_to(signup_path) do %>
+          <%= image_tag('beer-icon2.png', size: '70x70') %>
+          <p>新規登録</p>
+        <% end %>
       </div>
 
       <div class="starter">
-        <%= link_to(image_tag('beer-icon3.png'), guest_login_path, method: :post) %>
-        <span>ゲスト</span>
+        <%= link_to(guest_login_path, method: :post) do %>
+          <%= image_tag('beer-icon3.png', size: '70x70') %>
+          <p>ゲスト</p>
+        <% end %>
       </div>
     </section>
   <% end %>

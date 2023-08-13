@@ -25,7 +25,7 @@
 }
 
 .navbar-collapse {
-  background-color: #f8f9fa; /* 見やすい背景色に設定 */
+  background-color: #f8f9fa;
 }
 
 #content {
@@ -42,7 +42,7 @@ h1, h6 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh; /* コンテナの高さを画面の高さに合わせる場合 */
+  height: 100vh;
   margin-top: 30px;
 }
 
@@ -53,6 +53,7 @@ p, a {
 
 .pagination {
   justify-content: center;
+  margin-top: 5px;
 }
 
 footer {
@@ -84,9 +85,4 @@ footer {
   th, td{
   font-size: 11px;
   }
-}
-
-.pagination {
-  justify-content: center; /* ページネーションを中央に配置 */
-  margin-top: 5px; /* 上部の余白を調整 */
 }
