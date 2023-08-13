@@ -27,6 +27,7 @@ class CraftBeerShopsController < ApplicationController
     @comment = Comment.new
     # 新着順で表示
     @comments = @craft_beer_shop.comments.order(created_at: :desc)
+
   end
 
   def edit

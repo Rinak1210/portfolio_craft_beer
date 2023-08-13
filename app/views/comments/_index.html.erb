@@ -1,27 +1,29 @@
-<table>
-  <tbody>
-    <% if craft_beer_shop.comments.any? %>
-      <% craft_beer_shop.comments.each do |comment| %>
-        <tr>
-          <td>
-            <% if comment.user.image.attached? %>
-              <%= image_tag comment.user.image, size: '40x30' %>
-              <%= comment.user.name %>
-            <% else %>
-              <%= image_tag 'default_avatar.jpg', alt: "No Image", size: '40x30' %>
-              <%= comment.user.name %>
-            <% end %>
-          </td>
-          <td><%= comment.content %></td>
-          <td>
-            <% if comment.user == current_user %>
-              <%= link_to "削除", craft_beer_shop_comment_path(comment.craft_beer_shop_id, comment.id), method: :delete, remote: true, class: "btn btn-sm btn-danger float-end" %>
-            <% end %>
-          </td>
-        </tr>
+<div class="comments-scrollable">
+  <table>
+    <tbody>
+      <% if craft_beer_shop.comments.any? %>
+        <% craft_beer_shop.comments.each do |comment| %>
+          <tr>
+            <td>
+              <% if comment.user.image.attached? %>
+                <%= image_tag comment.user.image, size: '40x30' %>
+                <%= comment.user.name %>
+              <% else %>
+                <%= image_tag 'default_avatar.jpg', alt: "No Image", size: '40x30' %>
+                <%= comment.user.name %>
+              <% end %>
+            </td>
+            <td><%= comment.content %></td>
+            <td>
+              <% if comment.user == current_user %>
+                <%= link_to "削除", craft_beer_shop_comment_path(comment.craft_beer_shop_id, comment.id), method: :delete, remote: true, class: "btn btn-sm btn-danger float-end" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
+        <a>コメントはまだありません</a>
       <% end %>
-    <% else %>
-      <a>コメントはまだありません</a>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>

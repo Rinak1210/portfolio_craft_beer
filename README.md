@@ -24,6 +24,7 @@ Docker上でRails 6を使用して制作されています。
 - CircleCI 設定バージョン: 2.1
 - Heroku バージョン: 8.1.9 (darwin-x64)
 - Node.js バージョン: 16.19.0
+- AWS S3: 画像のストレージとして利用
 
 ## 特徴
 
@@ -37,7 +38,7 @@ Docker上でRails 6を使用して制作されています。
 
 ## ER図
 
-- ER図は、GemのRails ERDを使用して自動的に生成されました。
+- ER図は、GemのRails ERDを使用して自動的に生成。
 
 ![ER図](https://github.com/Rinak1210/portfolio_craft_beer/assets/123565603/6da5e727-ef37-4b42-9409-30dea4432521)
 

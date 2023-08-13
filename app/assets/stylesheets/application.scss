@@ -2,6 +2,7 @@
 @import "users.scss";
 @import "craft_beer_shops.scss";
 @import 'home.scss';
+@import 'comments.scss';
 @import "font-awesome";
 
 .background-image {
@@ -33,9 +34,11 @@
   z-index: 1;
 }
 
-h1, h6 {
+h1, h3, h6 {
   text-align: center;
+  padding-top: 5px;
   padding-bottom: 0px;
+  margin-bottom: 0px;
 }
 
 .contents, .form {
@@ -53,7 +56,7 @@ p, a {
 
 .pagination {
   justify-content: center;
-  margin-top: 5px;
+  margin-top: 0px;
 }
 
 footer {
@@ -61,15 +64,6 @@ footer {
   padding: 5px;
   text-align: center;
   margin-top: auto;
-}
-
-.comments-container {
-  position: relative;
-}
-
-.comments-scrollable {
-  max-height: 110px;
-  overflow-y: auto;
 }
 
 .icon-container {
@@ -85,4 +79,9 @@ footer {
   th, td{
   font-size: 11px;
   }
+}
+
+.comments-scrollable {
+  max-height: 110px;
+  overflow-y: auto;
 }

@@ -28,7 +28,7 @@
   <style type="text/css">
     #map { height: 200px;
           width: 70%;
-          margin: 10px auto 0;}
+          margin: 5px auto 0;}
   </style>
   <div id="map"></div>
 
@@ -80,19 +80,11 @@
   <tr>
     <th scope="col">コメント一覧</th>
     <td id="comments_area" class="comments-container"><!--idにして特定してJSを処理-->
-      <div class="comments-scrollable">
-        <%= render 'comments/index', comments: @comments, craft_beer_shop: @craft_beer_shop %>
-      </div>
+      <%= render 'comments/index', comments: @comments, craft_beer_shop: @craft_beer_shop %>
     </td>
-    <% if current_user %>
-      <% if @craft_beer_shop.user_id != current_user.id %>
-        <td class = "comment-create">
-          <%= render 'comments/form', comment: @comment, craft_beer_shop: @craft_beer_shop %>
-        </td>
-      <% else %>
-        <td></td>
-      <% end %>
-    <% end %>
+    <td class = "comment-create">
+      <%= render 'comments/form', comment: @comment, craft_beer_shop: @craft_beer_shop %>
+    </td>
   </tr>
   <tr>
     <th scope="col">投稿日</th>
