@@ -31,6 +31,7 @@
           margin: 10px auto 0;}
   </style>
   <div id="map"></div>
+
   <tr>
     <th scope="col">投稿者 </th>
     <% if @craft_beer_shop.user.image.attached? %>
@@ -88,20 +89,19 @@
         <td class = "comment-create">
           <%= render 'comments/form', comment: @comment, craft_beer_shop: @craft_beer_shop %>
         </td>
+      <% else %>
+        <td></td>
       <% end %>
     <% end %>
   </tr>
   <tr>
     <th scope="col">投稿日</th>
-    <td><%= l @craft_beer_shop.created_at %></td>
-    <td></td>
-  </tr>
-  <tr>
-    <% if current_user %>
-      <% if @craft_beer_shop.user_id == current_user.id %>
-        <td><%= link_to "編集", edit_craft_beer_shop_path(@craft_beer_shop.id), class: "btn btn-sm btn-success" %></td>
-        <td><%= link_to "削除", @craft_beer_shop, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger" %></td>
+    <td><%= l @craft_beer_shop.created_at %>
+      <% if current_user %>
+        <%= link_to "編集", edit_craft_beer_shop_path(@craft_beer_shop.id), class: "btn btn-sm btn-success" %>
+        <%= link_to "削除", @craft_beer_shop, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger" %>
       <% end %>
-    <% end %>
+    </td>
+    <td></td>
   </tr>
 </table>
