@@ -1,43 +1,57 @@
 <h3>みんなの投稿一覧</h3>
-<% if current_user %>
-  <p>現在のユーザー：<%= current_user.name %> <%= link_to "新規投稿する", new_craft_beer_shop_path, class: 'btn btn-primary' %></p>
-<% end %>
 
-<table class="table table-light table-striped">
-  <thead>
-    <tr>
-      <th scope="col">投稿ID</th>
-      <th scope="col">投稿者</th>
-      <th scope="col">クラフトビール 店名</th>
-      <th scope="col">おすすめポイント</th>
-      <th scope="col">住所</th>
-      <th scope="col">写真</th>
-      <th scope="col">いいね</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @craft_beer_shops.each do |craft_beer_shop| %>
-      <tr>
-        <th scope="row"><%= craft_beer_shop.id %></th>
-        <% if craft_beer_shop.user.image.attached? %>
-          <td><%= image_tag craft_beer_shop.user.image, size: '60x50' %>  <%= craft_beer_shop.user.name %></td>
-        <% else %>
-          <td><%= image_tag 'default_avatar.jpg', alt: "No Image", size: '60x50' %>  <%= craft_beer_shop.user.name %></td>
-        <% end %>
-        <td><%=link_to "#{craft_beer_shop.name}", [craft_beer_shop] %></td>
-        <td><%= craft_beer_shop.description.truncate(15) %></td>
-        <td><%= craft_beer_shop.address.truncate(15)  %></td>
-        <% if craft_beer_shop.images.attached? %>
-          <% image = craft_beer_shop.images.first %>
-          <td><%= image_tag image, size: '70x90' %></td>
-        <% else %>
-          <td><%= image_tag "no_image.jpg", size: '70x90', alt: "No Image" %></td>
-        <% end %>
-        <td id="favorite_<%= craft_beer_shop.id %>">
-          <%= render "favorites/favorite", craft_beer_shop: craft_beer_shop %>
-        </td>
-      </tr>
+<div class="posts-container">
+
+  <div class="d-flex justify-content-center align-items-center mb-3">
+    <div class="btns" role="group" aria-label="Sort Options">並び替え：
+      <%= link_to "新しい順", craft_beer_shops_path(sort: 'latest'), class: "btn btn-light btn-sm" %>
+      <%= link_to "古い順", craft_beer_shops_path(sort: 'old'), class: "btn btn-light btn-sm" %>
+      <%= link_to "いいね順", craft_beer_shops_path(sort: 'most_favorited'), class: "btn btn-light btn-sm" %>
+    </div>
+
+    <% if current_user %>
+      <div class="user-info ml-3">
+        <p> / 現在のユーザー：<%= current_user.name %> <%= link_to "新規投稿する", new_craft_beer_shop_path, class: 'btn btn-primary' %></p>
+      </div>
     <% end %>
-  </tbody>
-</table>
-<%= paginate @craft_beer_shops %>
+  </div>
+
+  <table class="table table-light table-striped">
+    <thead>
+      <tr>
+        <th scope="col">投稿ID</th>
+        <th scope="col">投稿者</th>
+        <th scope="col">クラフトビール 店名</th>
+        <th scope="col">おすすめポイント</th>
+        <th scope="col">住所</th>
+        <th scope="col">写真</th>
+        <th scope="col">いいね</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @craft_beer_shops.each do |craft_beer_shop| %>
+        <tr>
+          <th scope="row"><%= craft_beer_shop.id %></th>
+          <% if craft_beer_shop.user.image.attached? %>
+            <td><%= image_tag craft_beer_shop.user.image, size: '60x50' %>  <%= craft_beer_shop.user.name %></td>
+          <% else %>
+            <td><%= image_tag 'default_avatar.jpg', alt: "No Image", size: '60x50' %>  <%= craft_beer_shop.user.name %></td>
+          <% end %>
+          <td><%=link_to "#{craft_beer_shop.name}", [craft_beer_shop] %></td>
+          <td><%= craft_beer_shop.description.truncate(15) %></td>
+          <td><%= craft_beer_shop.address.truncate(15)  %></td>
+          <% if craft_beer_shop.images.attached? %>
+            <% image = craft_beer_shop.images.first %>
+            <td><%= image_tag image, size: '70x90' %></td>
+          <% else %>
+            <td><%= image_tag "no_image.jpg", size: '70x90', alt: "No Image" %></td>
+          <% end %>
+          <td id="favorite_<%= craft_beer_shop.id %>">
+            <%= render "favorites/favorite", craft_beer_shop: craft_beer_shop %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= paginate @craft_beer_shops %>
+</div>

@@ -22,6 +22,10 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
+    unless @user == current_user
+      flash[:alert] = "他ユーザーのプロフィールを編集することはできません"
+      redirect_to profile_path(@user)
+    end
   end
 
   def update

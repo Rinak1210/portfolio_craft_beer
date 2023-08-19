@@ -13,6 +13,14 @@ class CraftBeerShop < ApplicationRecord
   validates :description, presence: true
   validates :user_id, presence: true
 
+  scope :latest, -> { order(created_at: :desc) }
+  scope :old, -> { order(created_at: :asc) }
+  scope :most_favorited, -> {
+    joins(:favorites)
+      .group('craft_beer_shops.id')
+      .order(Arel.sql('COUNT(favorites.id) DESC'))
+  }
+
   def already_favorited?(user_id)
     favorites.find_by(user_id: user_id)
   end

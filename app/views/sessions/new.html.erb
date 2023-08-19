@@ -1,7 +1,6 @@
 <div class="form">
   <h1>ログイン</h1>
   <%= form_with model: @user, local: true do |form| %>
-    <%= flash[:danger] %>
 
     <div class="mb-3">
       <%= form.label :email, 'メールアドレス', class: "form-label" %>

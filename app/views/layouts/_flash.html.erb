@@ -1,2 +1,5 @@
-<%= flash[:notice] %>
-<%= flash[:alert] %>
+<% flash.each do |type, message| %>
+  <div class="flash <%= type %>">
+    <%= message %>
+  </div>
+<% end %>

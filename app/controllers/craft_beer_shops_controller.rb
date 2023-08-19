@@ -2,7 +2,13 @@ class CraftBeerShopsController < ApplicationController
   before_action :login_required, only: [:index, :new, :create, :edit, :update, :destroy]
 
   def index
-    @craft_beer_shops =  CraftBeerShop.all.page(params[:page]).per(3).order('created_at DESC')
+    if params[:sort] == 'latest'
+      @craft_beer_shops = CraftBeerShop.latest.page(params[:page]).per(3)
+    elsif params[:sort] == 'old'
+      @craft_beer_shops = CraftBeerShop.old.page(params[:page]).per(3)
+    else params[:sort] == 'most_favorited'
+      @craft_beer_shops = CraftBeerShop.most_favorited.page(params[:page]).per(3)
+    end
   end
 
   def new
@@ -30,6 +36,10 @@ class CraftBeerShopsController < ApplicationController
 
   def edit
     @craft_beer_shop = CraftBeerShop.find(params[:id])
+    unless @craft_beer_shop.user == current_user
+      flash[:alert] = "他ユーザーの投稿を編集することはできません"
+      redirect_to craft_beer_shops_path
+    end
   end
 
   def update

@@ -2,9 +2,9 @@
   <section class="first-section">
     <div class ="user-info">
       <% if current_user.image.attached? %>
-        <%= image_tag current_user.image, size: '70x60' %>
+        <%= image_tag current_user.image, size: '70x90' %>
       <% else %>
-        <%= image_tag 'default_avatar.jpg', alt: "No Image", size: '70x60' %>
+        <%= image_tag 'default_avatar.jpg', alt: "No Image", size: '70x90' %>
       <% end %>
       <a>  ユーザーネーム：<%= @user.name %></a>
       <% if current_user.email != "guest@exapmle.com" %>

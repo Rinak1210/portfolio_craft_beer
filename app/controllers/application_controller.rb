@@ -12,4 +12,8 @@ class ApplicationController < ActionController::Base
   def login_required
     redirect_to login_path unless current_user
   end
+
+  def require_author(craft_beer_shop)
+    redirect_to root_path unless current_user && craft_beer_shop.user == current_user
+  end
 end

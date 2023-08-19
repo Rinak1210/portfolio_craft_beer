@@ -90,7 +90,7 @@
   <tr>
     <th scope="col">投稿日</th>
     <td><%= l @craft_beer_shop.created_at %>
-      <% if current_user %>
+      <% if @craft_beer_shop.user == current_user %>
         <%= link_to "編集", edit_craft_beer_shop_path(@craft_beer_shop.id), class: "btn btn-sm btn-success" %>
         <%= link_to "削除", @craft_beer_shop, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger" %>
       <% end %>

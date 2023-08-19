@@ -11,11 +11,9 @@ ActiveStorage.start()
 
 document.addEventListener("turbolinks:load", function() {
 
-  // For Bootstrap tooltips and popovers
   $('[data-toggle="tooltip"]').tooltip();
   $('[data-toggle="popover"]').popover();
 
-  // For handling Bootstrap navbar toggler
   $('.navbar-toggler').on('click', function () {
     $('.navbar-collapse').toggleClass('show');
   });

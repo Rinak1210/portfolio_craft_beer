@@ -1,6 +1,15 @@
 ---
 ja:
   activerecord:
+    attributes:
+      user:
+        name: 'ユーザーネーム'
+        email: 'メールアドレス'
+        password: 'パスワード'
+      craft_beer_shop:
+        name: '店名'
+        address: '住所'
+        description: 'おすすめポイント'
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

@@ -84,3 +84,19 @@ footer {
   max-height: 110px;
   overflow-y: auto;
 }
+
+.flash {
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+
+  &.notice {
+    background-color: #4caf50;
+    color: white;
+  }
+
+  &.alert {
+    background-color: #f44336;
+    color: white;
+  }
+}

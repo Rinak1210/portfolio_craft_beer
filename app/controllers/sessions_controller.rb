@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
         flash[:notice] = "ログインしました"
         redirect_to craft_beer_shops_path
       else
-        flash.now[:danger] = 'ログインに失敗しました'
+        flash.now[:alert] = 'ログインに失敗しました'
         render 'new'
       end
   end
