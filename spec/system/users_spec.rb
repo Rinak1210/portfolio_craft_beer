@@ -27,7 +27,7 @@ RSpec.describe User, type: :system do
         fill_in "パスワード(確認)", with: "password2"
         click_button "登録"
         expect(current_path).to eq signup_path
-        expect(page). to have_content "Emailを入力してください"
+        expect(page). to have_content "メールアドレスを入力してください"
       end
     end
     context "記入したメールアドレスが既に登録されている" do
@@ -39,7 +39,7 @@ RSpec.describe User, type: :system do
         fill_in "パスワード(確認)", with: "password3"
         click_button "登録"
         expect(current_path).to eq signup_path
-        expect(page). to have_content "Emailはすでに存在します"
+        expect(page). to have_content "メールアドレスはすでに存在します"
       end
     end
   end
