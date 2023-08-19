@@ -45,7 +45,7 @@
 
 ## 全体設計
 
-![全体設計図](https://github.com/Rinak1210/portfolio_craft_beer/assets/123565603/707f2a97-4872-417e-b7da-5c1020292a71)
+![全体設計図](https://github.com/Rinak1210/portfolio_craft_beer/assets/123565603/1146f768-6db8-4e94-842b-64cc147409e4)
 
 ## ER図
 
