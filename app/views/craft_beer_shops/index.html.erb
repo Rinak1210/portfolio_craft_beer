@@ -1,4 +1,4 @@
-<h3>みんなの投稿一覧</h3>
+<h4>みんなの投稿一覧</h4>
 
 <div class="posts-container">
 
@@ -42,9 +42,9 @@
           <td><%= craft_beer_shop.address.truncate(15)  %></td>
           <% if craft_beer_shop.images.attached? %>
             <% image = craft_beer_shop.images.first %>
-            <td><%= image_tag image, size: '70x90' %></td>
+            <td><%= image_tag image, size: '60x80' %></td>
           <% else %>
-            <td><%= image_tag "no_image.jpg", size: '70x90', alt: "No Image" %></td>
+            <td><%= image_tag "no_image.jpg", size: '60x80', alt: "No Image" %></td>
           <% end %>
           <td id="favorite_<%= craft_beer_shop.id %>">
             <%= render "favorites/favorite", craft_beer_shop: craft_beer_shop %>
