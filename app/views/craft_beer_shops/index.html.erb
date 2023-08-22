@@ -36,9 +36,9 @@
             <% else %>
               <td><%= image_tag 'default_avatar.jpg', alt: "No Image", size: '60x50' %>  <%= craft_beer_shop.user.name %></td>
             <% end %>
-            <td><%=link_to "#{craft_beer_shop.name}", [craft_beer_shop] %></td>
-            <td><%= craft_beer_shop.description.truncate(15) %></td>
-            <td><%= craft_beer_shop.address.truncate(15)  %></td>
+            <td><%=link_to "#{craft_beer_shop.name.truncate(20)}", [craft_beer_shop] %></td>
+            <td><%= craft_beer_shop.description.truncate(10) %></td>
+            <td><%= craft_beer_shop.address.truncate(10)  %></td>
             <% if craft_beer_shop.images.attached? %>
               <% image = craft_beer_shop.images.first %>
               <td><%= image_tag image, size: '60x80' %></td>
