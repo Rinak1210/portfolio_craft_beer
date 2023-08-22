@@ -31,7 +31,7 @@
           <th>写真</th>
           <th>店名</th>
           <th>住所</th>
-          <th>ポイント</th>
+          <th class="d-none d-md-block">ポイント</th>
           <th>投稿日</th>
           <th>編集</th>
           <th>削除</th>
@@ -46,9 +46,9 @@
               <% else %>
                 <td><%= image_tag "no_image.jpg", :size => '60x50', alt: "No Image" %></td>
               <% end %>
-              <td><%= link_to craft_beer_shop.name, craft_beer_shop %></td>
-              <td><%= craft_beer_shop.address %></td>
-              <td><%= craft_beer_shop.description.truncate(15) %></td>
+              <td><%= link_to craft_beer_shop.name.truncate(20), craft_beer_shop %></td>
+              <td><%= craft_beer_shop.address.truncate(10) %></td>
+              <td class="d-none d-md-block"><%= craft_beer_shop.description.truncate(10) %></td>
               <td><%= l craft_beer_shop.created_at %></td>
               <td><%= link_to "編集", edit_craft_beer_shop_path(craft_beer_shop), class: "btn btn-sm btn-success" if craft_beer_shop.user_id == current_user.id %></td>
               <td><%= link_to "削除", craft_beer_shop, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger" if craft_beer_shop.user_id == current_user.id %></td>

@@ -38,7 +38,7 @@
     <% if @craft_beer_shop.user.image.attached? %>
       <td><%= image_tag @craft_beer_shop.user.image, size: '40x30' %>
         <%= @craft_beer_shop.user.name %>
-        /  投稿日  :  <%= l @craft_beer_shop.created_at %>
+        /  日付  :  <%= l @craft_beer_shop.created_at %>
       </td>
       <td>
         <% if @craft_beer_shop.user == current_user %>
@@ -79,7 +79,7 @@
     </tr>
   <% end %>
   <tr class="icon-favorite">
-    <th scope="col">いいね</th>
+    <th scope="col" >いいね</th>
     <td colspan="2" class="text-left">
       <div id="favorite_<%= @craft_beer_shop.id %>" class="icon-container">
         <%= render 'favorites/favorite', craft_beer_shop: @craft_beer_shop %>

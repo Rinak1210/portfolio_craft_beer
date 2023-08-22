@@ -33,7 +33,7 @@
   z-index: 1;
 }
 
-h1, h3, h4, h6 {
+h1,h2, h3, h4, h6 {
   text-align: center;
   padding-top: 5px;
   margin-top: 0px;
@@ -105,4 +105,14 @@ footer {
 .link-text {
   font-weight: bold;
   color: gray;
+}
+
+@media (max-width: 767px) {
+  th, td {
+    font-size: 10px;
+    padding: 0px;
+  }
+  .icon-favorite {
+    display: none;
+  }
 }
