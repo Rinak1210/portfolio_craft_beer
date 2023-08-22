@@ -30,5 +30,29 @@
         <% end %>
       </div>
     </section>
+  <% else %>
+    <h6 class="link-text">ログイン中のユーザー： <%=link_to current_user.name, profile_path(current_user) %></h6>
+    <section class="wrapper">
+          <div class="starter">
+        <%= link_to(craft_beer_shops_path) do %>
+          <%= image_tag('beer-icon1.png', size: '70x70') %>
+          <p class="link-text">投稿を見に行く</p>
+        <% end %>
+      </div>
+
+      <div class="starter">
+        <%= link_to(new_craft_beer_shop_path) do %>
+          <%= image_tag('beer-icon2.png', size: '70x70') %>
+          <p class="link-text">投稿してみる</p>
+        <% end %>
+      </div>
+
+      <div class="starter">
+        <%= link_to(logout_path, method: :delete, data: { confirm: 'ログアウトしますか？' }) do %>
+          <%= image_tag('beer-icon3.png', size: '70x70') %>
+          <p class="link-text">ログアウト</p>
+        <% end %>
+      </div>
+    </section>
   <% end %>
 </div>

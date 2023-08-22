@@ -28,7 +28,6 @@
     <table class ="table table-light table-striped">
       <thead>
         <tr>
-          <th>投稿ID</th>
           <th>写真</th>
           <th>店名</th>
           <th>住所</th>
@@ -42,11 +41,10 @@
         <% if @craft_beer_shops.any? %>
           <% @craft_beer_shops.each do |craft_beer_shop| %>
             <tr>
-              <td><%= craft_beer_shop.id %></td>
               <% if craft_beer_shop.images.attached? %>
-                <td><%= image_tag craft_beer_shop.images.first.variant(resize: "70x60") %></td>
+                <td><%= image_tag craft_beer_shop.images.first.variant(resize: "60x50") %></td>
               <% else %>
-                <td><%= image_tag "no_image.jpg", :size => '70x60', alt: "No Image" %></td>
+                <td><%= image_tag "no_image.jpg", :size => '60x50', alt: "No Image" %></td>
               <% end %>
               <td><%= link_to craft_beer_shop.name, craft_beer_shop %></td>
               <td><%= craft_beer_shop.address %></td>
