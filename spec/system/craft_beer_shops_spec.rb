@@ -15,6 +15,7 @@ RSpec.describe 'CraftBeerShops', type: :system do
     it 'クラフトビール 店名をクリックすると詳細ページにアクセスできること' do
       visit craft_beer_shops_path
       click_on craft_beer_shop.name
+
       expect(current_path).to eq(craft_beer_shop_path(craft_beer_shop))
       expect(page).to have_content(craft_beer_shop.name)
       expect(page).to have_content(craft_beer_shop.address)

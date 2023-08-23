@@ -36,7 +36,7 @@
             <% else %>
               <td><%= image_tag 'default_avatar.jpg', alt: "No Image", size: '60x50' %>  <%= craft_beer_shop.user.name %></td>
             <% end %>
-            <td><%=link_to "#{craft_beer_shop.name.truncate(20)}", [craft_beer_shop] %></td>
+            <td><%=link_to "#{craft_beer_shop.name.truncate(15)}", [craft_beer_shop] %></td>
             <td class="d-none d-md-block"><%= craft_beer_shop.description.truncate(10) %></td>
             <td><%= craft_beer_shop.address.truncate(10)  %></td>
             <% if craft_beer_shop.images.attached? %>
