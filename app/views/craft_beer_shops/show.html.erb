@@ -40,13 +40,14 @@
         <td><%= image_tag @craft_beer_shop.user.image, size: '30x20' %>
           <%= @craft_beer_shop.user.name %>
           /    <%= l @craft_beer_shop.created_at %>
-        </td>
-        <td>
           <% if @craft_beer_shop.user == current_user %>
-            <%= link_to "編集", edit_craft_beer_shop_path(@craft_beer_shop.id), class: "btn btn-sm btn-success" %>
-            <%= link_to "削除", @craft_beer_shop, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger" %>
+            <div class="edit-post">
+              <%= link_to "編集", edit_craft_beer_shop_path(@craft_beer_shop.id), class: "btn btn-sm btn-success" %>
+              <%= link_to "削除", @craft_beer_shop, method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger" %>
+            <div>
           <% end %>
         </td>
+        <td></td>
       <% else %>
         <td><%= image_tag 'default_avatar.jpg', alt: "No Image", size: '40x30' %>  <%= @craft_beer_shop.user.name %></td>
         <td></td>
@@ -88,13 +89,18 @@
       </td>
     </tr>
     <tr>
-      <th scope="col">コメント</th>
+      <th scope="col">コメント一覧</th>
       <td id="comments_area" class="comments-container">
         <%= render 'comments/index', comments: @comments, craft_beer_shop: @craft_beer_shop %>
       </td>
+      <td></td>
+    </tr>
+    <tr>
+      <th scope="col">コメントする</th>
       <td class = "comment-create">
         <%= render 'comments/form', comment: @comment, craft_beer_shop: @craft_beer_shop %>
       </td>
+      <td></td>
     </tr>
   </table>
 </div>
