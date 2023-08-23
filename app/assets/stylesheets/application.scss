@@ -115,6 +115,9 @@ footer {
   th, td {
     font-size: 10px;
     padding: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .icon-favorite {
     display: none;

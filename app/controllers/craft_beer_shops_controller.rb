@@ -2,14 +2,15 @@ class CraftBeerShopsController < ApplicationController
   before_action :login_required, only: [:index, :new, :create, :edit, :update, :destroy]
 
   def index
-    if params[:sort] == 'latest'
-      @craft_beer_shops = CraftBeerShop.latest.page(params[:page]).per(3)
-    elsif params[:sort] == 'old'
+    if params[:sort] == 'old'
       @craft_beer_shops = CraftBeerShop.old.page(params[:page]).per(3)
-    else params[:sort] == 'most_favorited'
+    elsif params[:sort] == 'most_favorited'
       @craft_beer_shops = CraftBeerShop.most_favorited.page(params[:page]).per(3)
+    else
+      @craft_beer_shops = CraftBeerShop.latest.page(params[:page]).per(3)
     end
   end
+
 
   def new
     @craft_beer_shop = CraftBeerShop.new
