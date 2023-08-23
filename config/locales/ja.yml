@@ -10,6 +10,8 @@ ja:
         name: '店名'
         address: '住所'
         description: 'おすすめポイント'
+      comment:
+        content: 'コメント'
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

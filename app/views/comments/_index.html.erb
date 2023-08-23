@@ -6,10 +6,10 @@
           <tr>
             <td>
               <% if comment.user.image.attached? %>
-                <%= image_tag comment.user.image, size: '40x30' %>
+                <%= image_tag comment.user.image, size: '30x20' %>
                 <%= comment.user.name %>
               <% else %>
-                <%= image_tag 'default_avatar.jpg', alt: "No Image", size: '40x30' %>
+                <%= image_tag 'default_avatar.jpg', alt: "No Image", size: '30x20' %>
                 <%= comment.user.name %>
               <% end %>
             </td>

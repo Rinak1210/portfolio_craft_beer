@@ -35,11 +35,11 @@
     <div id="map"></div>
 
     <tr>
-      <th scope="col">投稿者 </th>
+      <th scope="col">投稿</th>
       <% if @craft_beer_shop.user.image.attached? %>
-        <td><%= image_tag @craft_beer_shop.user.image, size: '40x30' %>
+        <td><%= image_tag @craft_beer_shop.user.image, size: '30x20' %>
           <%= @craft_beer_shop.user.name %>
-          /  日付  :  <%= l @craft_beer_shop.created_at %>
+          /    <%= l @craft_beer_shop.created_at %>
         </td>
         <td>
           <% if @craft_beer_shop.user == current_user %>
